@@ -1,17 +1,17 @@
 # phpBox
 Proyecto inspirado en Dropbox realizado con PHP.
 
-Alt-Reto del proyecto
+Reto del proyecto
 ------
 Se deberá crear una aplicación web que posibilite a distintos usuarios de forma privada, con un acceso de login de usuario, el almacenamiento de diversos archivos, para tenerlos almacenados en la nube en su cuenta.
 
 Dentro de la cuenta existirán opciones para:
 
-- crear carpetas.
+- Crear carpetas.
 
-- explorar las carpetas para ver los archivos subidos y subir archivos en las distintas ubicaciones de la cuenta.
+- Explorar las carpetas para ver los archivos subidos y subir archivos en las distintas ubicaciones de la cuenta.
 
-- hacer backups de los archivos, pudiendo seleccionar varios. Estos backups se irán conservando en el tiempo y se encontrarán en una carpeta específica de backups.
+- Hacer backups de los archivos, pudiendo seleccionar varios. Estos backups se irán conservando en el tiempo y se encontrarán en una carpeta específica de backups.
 
 - Generar informe PDF. Generará un informe con un encabezado de usuario, y un listado de carpetas y archivos que se encuentran, así como un recuento del número de archivos totales y almacenamiento ocupado en la cuenta. Estos archivos se irán almacenando en una carpeta específica para su fin.
 
