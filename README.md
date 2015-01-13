@@ -1,2 +1,5 @@
 # phpBox
-Proyecto inspirado en Dropbox realizadon con PHP.
+Proyecto inspirado en Dropbox realizado con PHP.
+
+## Enunciado del proyecto
+------
