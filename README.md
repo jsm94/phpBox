@@ -1,7 +1,7 @@
 # phpBox
 Proyecto inspirado en Dropbox realizado con PHP.
 
-## Reto del proyecto
+Alt-Reto del proyecto
 ------
 Se deberá crear una aplicación web que posibilite a distintos usuarios de forma privada, con un acceso de login de usuario, el almacenamiento de diversos archivos, para tenerlos almacenados en la nube en su cuenta.
 
