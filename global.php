@@ -10,7 +10,7 @@ $BOX_MODS = $BOX_URI . 'modulos/';
 $BOX_BD_name = 'boxBD';
 $BOX_BD_server = 'localhost';
 $BOX_BD_user = 'root';
-$BOX_BD_pass = 'usuario';
+$BOX_BD_pass = 'NDrake24';
 
 // Carga de módulos principales
 require_once $BOX_MODS . 'BD.php';

@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="css/material.min.css">
     <link rel="stylesheet" href="css/ripples.min.css">
     <link rel="stylesheet" href="css/material-wfont.min.css">
-    <style>body{padding-top:50px;}.starter-template{padding:40px 15px;text-align:center;}</style>
+    <link rel="stylesheet" href="css/global.css">
 
     <!--[if IE]>
         <script src="https://cdn.jsdelivr.net/html5shiv/3.7.2/html5shiv.min.js"></script>

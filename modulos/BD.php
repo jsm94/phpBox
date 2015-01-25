@@ -6,8 +6,10 @@ function conectar($server, $user, $pass, $name){
         // set the PDO error mode to exception
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         echo "Conexión realizada";
+        return true;
     } catch(PDOException $e){
         echo "Conexión fallida: " . $e->getMessage();
+        return false;
     }
 }
 ?>
