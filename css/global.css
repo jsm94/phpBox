@@ -1,3 +1,20 @@
 .center {
     text-align: center
 }
+
+.list-icon {
+    font-size: 30px;
+    text-align: center;
+}
+
+.list-icon.blue {
+    color: #2c6fb2
+}
+
+.list-icon.red {
+    color: #ff5757
+}
+
+.list-icon.green {
+    color: #2b882b
+}

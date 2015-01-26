@@ -1,4 +1,5 @@
 <?php
+ini_set('display_errors', 'On');
 $dir    = '/var/www/d_Box/d_' . $_SESSION['nick'];
 // array_diff(scandir($dir), array('..', '.'))
 $files = array();
@@ -8,7 +9,7 @@ if (is_dir($dir)) {
         $cont1 = 0;
         $cont2 = 0;
         while (($file = readdir($dh)) !== false) {
-            if(!is_dir($file)){
+            if(!is_dir($dir . '/' . $file)){
                 $files[$cont1] = $file;
                 $cont1++;
             } else {
@@ -19,7 +20,7 @@ if (is_dir($dir)) {
         closedir($dh);
     }
 }
-mkdir($dir . '/carpeta2',0777, false);
+$folders = array_diff($folders, array('..', '.'))
 ?>
 <div class="container-fluid">
     <div class="row">
@@ -28,15 +29,43 @@ mkdir($dir . '/carpeta2',0777, false);
             <table class="table">
             <?php
                 foreach ($folders as $file) {
-                    if (!is_file($file)){
                         ?><tr>
+                            <td class="list-icon"><i class="mdi-file-folder"></i></td>
+                            <td class="list-name"><?php echo $file ?></td>
                             <td></td>
-                            <td><?php echo $file ?></td>
-                            <td></td>
-                            <td></td>
+                            <td>
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox">
+                                    </label>
+                                </div>
+                            </td>
                         </tr><?php
-                    }
                 }
+                foreach ($files as $file) {
+                    $ext = pathinfo($file, PATHINFO_EXTENSION);
+                    $color = 'blue';
+                    switch($ext){
+                        case 'pdf':
+                            $color = 'red';
+                            break;
+                        case 'jpg':
+                            $color = 'green';
+                            break;
+                    }
+                ?><tr>
+                <td class="list-icon <?php echo $color ?>"><i class="mdi-editor-insert-drive-file"></i></td>
+                <td class="list-name"><?php echo $file ?></td>
+                <td></td>
+                <td>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox">
+                        </label>
+                    </div>
+                </td>
+                </tr><?php
+}
             ?>
             </table>
         </div>

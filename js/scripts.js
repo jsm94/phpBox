@@ -19,6 +19,9 @@ $("#iniciarSesion").click(function () {
                 $('#wrapper').fadeOut('slow', function () {
                     $('#wrapper').load('bloques/box.php', function () {
                         $('#wrapper').fadeIn('slow');
+                        $(function () {
+                            $.material.init();
+                        });
                     });
                 });
             } else {
