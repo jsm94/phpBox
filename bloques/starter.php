@@ -7,7 +7,7 @@
                     <div class="panel-heading">
                         <h3 class="panel-title center">Acceso</h3>
                     </div>
-                    <form id="formularioInicioSesion" action="">
+                    <form id="formularioInicioSesion" method="post">
                         <div class="panel-body">
                             <div class="form-group">
                                 <input class="form-control floating-label" name="nick" type="text" placeholder="Usuario" data-hint="Escribe tu nombre de usuario">

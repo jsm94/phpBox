@@ -16,10 +16,7 @@ $("#iniciarSesion").click(function () {
                     allow_dismiss: false
                 });
                 // Al entrar en la sesión cargamos en tiempo real la web
-                $('#wrapper').animate({
-                    top: 200,
-                    display: "none"
-                }, 2000, "linear", function () {
+                $('#wrapper').fadeOut('slow', function () {
                     $('#wrapper').load('bloques/box.php', function () {
                         $('#wrapper').fadeIn('slow');
                     });
