@@ -30,7 +30,7 @@ $folders = array_diff($folders, array('..', '.'))
             <?php
                 foreach ($folders as $file) {
                         ?><tr>
-                            <td class="list-icon"><i class="mdi-file-folder"></i></td>
+                            <td class="list-icon yellow"><i class="mdi-file-folder"></i></td>
                             <td class="list-name"><?php echo $file ?></td>
                             <td></td>
                             <td>

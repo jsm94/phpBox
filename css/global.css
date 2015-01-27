@@ -12,9 +12,13 @@
 }
 
 .list-icon.red {
-    color: #ff5757
+    color: #fc2020
 }
 
 .list-icon.green {
     color: #2b882b
+}
+
+.list-icon.yellow {
+    color: #eba444
 }
