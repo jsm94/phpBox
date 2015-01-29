@@ -1,6 +1,6 @@
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="description" content="Gestiona tus archivos en la nube">
     <meta name="author" content="Juan Antonio Seco Merchán">
     <title>phpBox</title>

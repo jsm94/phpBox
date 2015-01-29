@@ -1,6 +1,15 @@
 <?php
+session_start();
+include_once '../global.php';
+include_once 'global.php';
 ini_set('display_errors', 'On');
-$dir    = '/var/www/d_Box/d_' . $_SESSION['nick'];
+$dirOrig = $BOX_RAIZ . $BOX_prefixUser;
+$dir = $dirOrig . $_SESSION['nick'];
+
+if(isset($_GET['ruta'])){
+    $dir = base64_decode($_GET['ruta']);
+}
+
 // array_diff(scandir($dir), array('..', '.'))
 $files = array();
 $folders = array();
@@ -22,16 +31,13 @@ if (is_dir($dir)) {
 }
 $folders = array_diff($folders, array('..', '.'))
 ?>
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-4"></div>
-        <div class="col-md-8">
-            <table class="table">
+            <table id="listado-archivos" class="table">
+            <input id="rutaActual" type="hidden" data-ruta="<?php echo str_replace($dirOrig,'',$dir) ?>"></input>
             <?php
                 foreach ($folders as $file) {
                         ?><tr>
                             <td class="list-icon yellow"><i class="mdi-file-folder"></i></td>
-                            <td class="list-name"><?php echo $file ?></td>
+                            <td class="list-name dir" data-ruta="<?php echo base64_encode($dir . "/" . $file) ?>"><?php echo $file ?></td>
                             <td></td>
                             <td>
                                 <div class="checkbox">
@@ -68,6 +74,3 @@ $folders = array_diff($folders, array('..', '.'))
 }
             ?>
             </table>
-        </div>
-    </div>
-</div>

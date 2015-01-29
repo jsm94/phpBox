@@ -1,7 +1,7 @@
 <nav class="navbar navbar-inverse no-margin" role="navigation">
     <div class="container">
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -10,7 +10,7 @@
             <a class="navbar-brand" href="#">phpBox</a>
         </div>
 
-        <div class="collapse navbar-collapse">
+        <div id="navbar-collapse" class="collapse navbar-collapse">
             <!-- Navegación -->
             <ul class="nav navbar-nav">
                 <li class="active"><a href="#">Inicio</a>

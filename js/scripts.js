@@ -42,3 +42,20 @@ $("#iniciarSesion").click(function () {
         }
     });
 });
+
+var cargarFunciones = function() {
+    $(".dir").click(function() {
+        var ruta = $(this).attr("data-ruta");
+        $('#listado-archivos').fadeOut('slow', function () {
+            $('#listado-archivos').load('bloques/listadoArchivos.php?ruta=' + ruta, function () {
+                $('#listado-archivos').fadeIn('slow');
+                $(function () {
+                    $.material.init();
+                    cargarFunciones();
+                });
+            });
+        });
+    });
+}
+
+cargarFunciones();
