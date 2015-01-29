@@ -22,3 +22,25 @@
 .list-icon.yellow {
     color: #eba444
 }
+
+.navbar.grey {
+    background-color: #DADADA;
+    color: rgb(115, 115, 115);
+}
+
+.no-margin {
+    margin: 0;
+}
+
+.navbar.subnav .navbar-nav>li>a {
+    padding-top: 8.5px;
+    padding-bottom: 8.5px;
+}
+
+.subnav i {
+    font-size: 30px;
+}
+
+.subnav .text-option {
+
+}

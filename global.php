@@ -1,6 +1,6 @@
 <?php
 // Este archivo contendrá todas las variables globales de la aplicación
-$_URL = 'phpBox';
+$_URL = '';
 $BOX_URI = $_SERVER['DOCUMENT_ROOT'] . '/' . $_URL . '/';
 $BOX_BLOCKS = $BOX_URI . 'bloques/';
 $BOX_MODS = $BOX_URI . 'modulos/';
