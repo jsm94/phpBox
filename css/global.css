@@ -16,7 +16,7 @@
     padding-bottom: 8.5px;
 }
 
-.subnav ul > li > a {
+.subnav ul > li > a, .subnav li > a {
     display: table;
     height: 50px;
 }
@@ -33,14 +33,14 @@
     font-weight: 600;
 }
 
-.dropdown-menu li span {
+.v-align li span, .dropdown-menu li span {
     display: table-cell;
     position: relative;
     vertical-align: middle;
     left: 5px
 }
 
-.dropdown-menu li i {
+.v-align li i, .dropdown-menu li i  {
     display: table-cell;
     position: relative;
     vertical-align: middle;
@@ -56,19 +56,19 @@
     text-align: center;
 }
 
-.list-icon.blue {
+.list-icon.blue, .blue {
     color: #2c6fb2
 }
 
-.list-icon.red {
+.list-icon.red, .red {
     color: #fc2020
 }
 
-.list-icon.green {
+.list-icon.green, .green {
     color: #2b882b
 }
 
-.list-icon.yellow {
+.list-icon.yellow, .yellow {
     color: #eba444
 }
 
@@ -82,4 +82,29 @@
     text-decoration: underline;
     color: #3F51B5;
     cursor: pointer
+}
+
+.navbar-btn.btn-xs.btn-icon {
+    font-size: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    margin-bottom: 6px;
+    margin-top: 6px;
+    margin-right: 15px;
+}
+
+.navbar-header a.linkUser {
+    color: rgba(255,255,255,.84);
+    margin-right: 15px
+}
+
+.nav-inline > li {
+    display: inline;
+    float: left;
+}
+
+.dropdown-menu {
+    min-width: 114px
 }

@@ -1,31 +1,31 @@
 <nav class="navbar navbar-inverse no-margin" role="navigation">
     <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
+        <div class="navbar-header pull-left">
             <a class="navbar-brand" href="#">phpBox</a>
         </div>
 
-        <div id="navbar-collapse" class="collapse navbar-collapse">
-            <!-- Navegación -->
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Inicio</a>
-                </li>
-                <li><a href="modulos/cerrarSesion.php">Cerrar sesión</a>
-                </li>
-                <li><a href="#contact">Contact</a>
-                </li>
-            </ul>
-            <!-- Usuario -->
+        <div class="navbar-header pull-right">
+            <a href="" class="linkUser">@<span id="userNick"><?php echo $_SESSION['nick']?></span></a>
+            <a href="modulos/cerrarSesion.php" style="padding:0" class="hidden-md hidden-lg hidden-sm">
+                <button class="btn btn-danger btn-xs navbar-btn btn-icon"><i class="mdi-action-lock"></i></button>
+            </a>
+            <a href="modulos/cerrarSesion.php" style="padding:0" class="hidden-xs">
+                <button class="btn btn-danger btn-xs navbar-btn">Cerrar sesión</button>
+            </a>
+        </div>
+        <!--
+        <div id="navbar-collapse" class="collapse navbar-collapse">-->
+            <!-- Usuario
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">@<?php echo $_SESSION['nick']?></a></li>
-                <li><a href="modulos/cerrarSesion.php" style="padding:0"><button class="btn btn-danger btn-xs">Cerrar sesión</button></a></li>
+                <li><a href="#">@<span id="userNick"></span></a>
+                </li>
+                <li>
+                    <a href="modulos/cerrarSesion.php" style="padding:0">
+                        <button class="btn btn-danger btn-xs navbar-btn">Cerrar sesión</button>
+                    </a>
+                </li>
             </ul>
         </div>
-        <!--.nav-collapse -->
+        .nav-collapse -->
     </div>
 </nav>

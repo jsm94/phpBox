@@ -3,11 +3,13 @@ session_start();
 include_once '../global.php';
 include_once 'global.php';
 ini_set('display_errors', 'On');
-$dirOrig = $BOX_RAIZ . $BOX_prefixUser;
-$dir = $dirOrig . $_SESSION['nick'];
+$dirOrig = $BOX_RAIZ . $BOX_prefixUser . $_SESSION['nick'];
+$dir = $dirOrig;
 
 if(isset($_GET['ruta'])){
     $dir = base64_decode($_GET['ruta']);
+} else if(isset($_GET['uri'])){
+    $dir .= $_GET['uri'];
 }
 
 // array_diff(scandir($dir), array('..', '.'))
@@ -29,10 +31,10 @@ if (is_dir($dir)) {
         closedir($dh);
     }
 }
-$folders = array_diff($folders, array('..', '.'))
+$folders = array_diff($folders, array('..', '.', '.tmp'))
 ?>
             <table id="listado-archivos" class="table">
-            <input id="rutaActual" type="hidden" data-ruta="<?php echo str_replace($dirOrig,'',$dir) ?>"></input>
+            <input id="rutaActual" type="hidden" data-ruta="<?php echo str_replace($dirOrig,'',$dir) . '/' ?>"></input>
             <?php
                 foreach ($folders as $file) {
                         ?><tr>
@@ -42,7 +44,7 @@ $folders = array_diff($folders, array('..', '.'))
                             <td>
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox">
+                                        <input data-file="<?php echo $file ?>" type="checkbox" class="file-check">
                                     </label>
                                 </div>
                             </td>
@@ -66,7 +68,7 @@ $folders = array_diff($folders, array('..', '.'))
                 <td>
                     <div class="checkbox">
                         <label>
-                            <input type="checkbox">
+                            <input data-file="<?php echo $file ?>" type="checkbox" class="file-check">
                         </label>
                     </div>
                 </td>
