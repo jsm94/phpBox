@@ -47,6 +47,7 @@ $("#iniciarSesion").click(function () {
 var cargarFunciones = function () {
     // Cambiar de directorio
     $(".dir").click(cargarListado);
+    $(".breadcrumb li>a").click(cargarListado);
     $('#boton-crearCarpeta').click(crearCarpeta);
     $('#boton-eliminarElementos').click(eliminarElementos);
     $('#boton-descargar').click(descargarElementos);

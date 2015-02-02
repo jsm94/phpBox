@@ -31,10 +31,38 @@ if (is_dir($dir)) {
         closedir($dh);
     }
 }
-$folders = array_diff($folders, array('..', '.', '.tmp'))
+$folders = array_diff($folders, array('..', '.', '.tmp'));
+// Añadimos a un array la ruta actual
+$ruta = str_replace($dirOrig,'',$dir) . '/';
+$breadcrumb = explode("/",$ruta);
+$breadcrumb_nombres = array_filter( $breadcrumb, 'strlen' );
+$breadcrumb_ruta = $breadcrumb_nombres;
+$count = sizeof($breadcrumb_nombres);
+for($i = 1; $i < $count ; $i++) {
+    $breadcrumb_ruta[$i+1] = $breadcrumb_nombres[$i] .'/'. $breadcrumb_nombres[$i+1];
+}
+
 ?>
+<div id="listado-archivos">
+            <ul class="breadcrumb" style="margin-bottom: 5px;">
+                <li><a data-ruta="<?php echo base64_encode($dirOrig) ?>">Inicio</a></li>
+               <?php
+                for($i = 1; $i <= $count; $i++) {
+                $bread = $breadcrumb_nombres[$i];
+                if($i == $count){
+                ?>
+                <li class="active"><?php echo $bread ?></li>
+                <?php
+                } else {
+                    ?>
+                <li><a data-ruta="<?php echo base64_encode($dirOrig . '/' . $breadcrumb_ruta[$i]) ?>"><?php echo $bread ?></a></li>
+                    <?php
+                }
+                }
+                ?>
+            </ul>
             <table id="listado-archivos" class="table">
-            <input id="rutaActual" type="hidden" data-ruta="<?php echo str_replace($dirOrig,'',$dir) . '/' ?>"></input>
+            <input id="rutaActual" type="hidden" data-ruta="<?php echo $ruta ?>">
             <?php
                 foreach ($folders as $file) {
                         ?><tr>
@@ -76,3 +104,4 @@ $folders = array_diff($folders, array('..', '.', '.tmp'))
 }
             ?>
             </table>
+</div>

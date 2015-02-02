@@ -108,3 +108,8 @@
 .dropdown-menu {
     min-width: 114px
 }
+
+/* Breadcrumb */
+ul.breadcrumb > li > a {
+    cursor: pointer;
+}
