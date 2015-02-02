@@ -51,6 +51,10 @@
     vertical-align: middle
 }
 
+table#listado-archivos>tbody tr:first-child td {
+    border-top: 0;
+}
+
 .list-icon {
     font-size: 30px;
     text-align: center;
@@ -113,3 +117,42 @@
 ul.breadcrumb > li > a {
     cursor: pointer;
 }
+
+li.appear {
+    display: block;
+    -webkit-animation: appear 0.3s; /* Chrome, Safari, Opera */
+    animation: appear 0.3s;
+}
+
+li.desappear {
+    opacity: 0;
+    -webkit-animation: desappear 0.2s; /* Chrome, Safari, Opera */
+    animation: desappear 0.2s;
+}
+
+/* ANIMACIONES */
+/* Chrome, Safari, Opera */
+@-webkit-keyframes appear {
+    from {left: 50px; opacity: .0}
+    to{left: 0px}
+}
+
+/* Standard syntax */
+@keyframes appear {
+    from {background: red;}
+    to {background: yellow;}
+}
+
+/* Chrome, Safari, Opera */
+@-webkit-keyframes desappear {
+    from {top: 0px; opacity: 1}
+    to{top: 10px}
+}
+
+/* Standard syntax */
+@keyframes desappear {
+    from {background: red;}
+    to {background: yellow;}
+}
+
+/* FIN ANIMACIONES */

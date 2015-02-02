@@ -9,9 +9,9 @@
                     </li>
                 </ul>
             </li>
-            <li id="boton-eliminar" class="hidden"><a href="#" role="menuitem" href="#" data-target="#modal-eliminarElementos" data-toggle="modal"><i class="mdi-action-delete"></i><span class="text-option hidden-xs">Eliminar</span></a>
+            <li id="boton-eliminar" class="hidden appear"><a href="#" role="menuitem" href="#" data-target="#modal-eliminarElementos" data-toggle="modal"><i class="mdi-action-delete"></i><span class="text-option hidden-xs">Eliminar</span></a>
             </li>
-            <li id="boton-descargar" class="hidden"><a href="#" role="menuitem" href="#" data-target="#modal-descargarElementos" data-toggle="modal"><i class="mdi-file-cloud-download"></i><span class="text-option hidden-xs">Descargar</span></a>
+            <li id="boton-descargar" class="hidden appear"><a href="#" role="menuitem" href="#" data-target="#modal-descargarElementos" data-toggle="modal"><i class="mdi-file-cloud-download"></i><span class="text-option hidden-xs">Descargar</span></a>
             </li>
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">

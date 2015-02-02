@@ -100,12 +100,18 @@ var checkboxes = function(){
         archivos.push(check.attr('data-file'));
         $('#boton-eliminar').removeClass('hidden');
         $('#boton-descargar').removeClass('hidden');
+        $('#boton-eliminar').removeClass('desappear');
+        $('#boton-eliminar').addClass('appear');
+        $('#boton-descargar').removeClass('desappear');
+        $('#boton-descargar').addClass('appear');
         et.text((archivos.length == 1) ? archivos.length + ' elemento' : archivos.length + ' elementos');
     } else {
         archivos.splice(archivos.indexOf(check.attr('data-file')), 1);
         if (archivos.length == 0) {
-            $('#boton-eliminar').addClass('hidden');
-            $('#boton-descargar').addClass('hidden');
+            $('#boton-eliminar').removeClass('appear');
+            $('#boton-eliminar').addClass('desappear');
+            $('#boton-descargar').removeClass('appear');
+            $('#boton-descargar').addClass('desappear');
         }
         et.text((archivos.length == 1) ? archivos.length + ' elemento' : archivos.length + ' elementos');
     }
