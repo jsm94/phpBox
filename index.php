@@ -26,6 +26,7 @@ include_once('global.php')
     <script src="//cdn.jsdelivr.net/velocity/1.2.1/velocity.min.js"></script>
     <script src="js/material.min.js"></script>
     <script src="js/ripples.min.js"></script>
+    <script src="js/dropzone.min.js"></script>
     <script src="js/scripts.js"></script>
 </body>
 </html>

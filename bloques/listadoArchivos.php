@@ -44,6 +44,7 @@ for($i = 1; $i < $count ; $i++) {
 
 ?>
 <div id="listado-archivos">
+           <form id="formulario-subida" action="modulos/subirElementos.php" class="dropzone">
             <ul class="breadcrumb" style="margin-bottom: 5px;">
                 <li><a data-ruta="<?php echo base64_encode($dirOrig) ?>">Inicio</a></li>
                <?php
@@ -61,7 +62,7 @@ for($i = 1; $i < $count ; $i++) {
                 }
                 ?>
             </ul>
-            <table id="listado-archivos" class="table">
+            <table id="tabla-archivos" class="table">
             <input id="rutaActual" type="hidden" data-ruta="<?php echo $ruta ?>">
             <?php
                 foreach ($folders as $file) {
@@ -81,16 +82,36 @@ for($i = 1; $i < $count ; $i++) {
                 foreach ($files as $file) {
                     $ext = pathinfo($file, PATHINFO_EXTENSION);
                     $color = 'blue';
+                    $type = 'mdi-editor-insert-drive-file';
                     switch($ext){
                         case 'pdf':
                             $color = 'red';
+                            $type = 'mdi-action-description';
                             break;
                         case 'jpg':
+                        case 'png':
+                        case 'svg':
+                        case 'bmp':
                             $color = 'green';
+                            $type = 'mdi-image-image';
                             break;
+                        case 'docx':
+                        case 'doc':
+                            $color = 'blue';
+                            $type = 'mdi-action-description';
+                            break;
+                        case 'zip':
+                        case 'gz':
+                            $color = 'brown';
+                            $type = 'mdi-action-note-add';
+                            break;
+                        case 'deb':
+                        $color = 'yelbrown';
+                        $type = 'mdi-action-extension';
+                        break;
                     }
                 ?><tr>
-                <td class="list-icon <?php echo $color ?>"><i class="mdi-editor-insert-drive-file"></i></td>
+                <td class="list-icon <?php echo $color ?>"><i class="<?php echo $type ?>"></i></td>
                 <td class="list-name"><?php echo $file ?></td>
                 <td></td>
                 <td>
@@ -104,4 +125,5 @@ for($i = 1; $i < $count ; $i++) {
 }
             ?>
             </table>
+    </form>
 </div>

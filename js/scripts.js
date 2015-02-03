@@ -52,6 +52,7 @@ var cargarFunciones = function () {
     $('#boton-eliminarElementos').click(eliminarElementos);
     $('#boton-descargar').click(descargarElementos);
     $('.file-check').click(checkboxes);
+    subida();
 }
 
 // Cargar listado-archivos
@@ -129,7 +130,7 @@ var eliminarElementos = function() {
     }, function (data) {
         if (data == "ok") {
             $('#modal-eliminarElementos').modal('toggle');
-            $('#listado-archivos').fadeOut('slow', function () {
+            $('#listado-archivos').fadeOut('fast', function () {
                 $('#listado-archivos').load('bloques/listadoArchivos.php?uri=' + $('#rutaActual').attr('data-ruta'), function () {
                     $('#listado-archivos').fadeIn('slow');
                     $(function () {
@@ -160,5 +161,69 @@ var descargarElementos = function() {
     var user = $('#userNick').text();
     var elementos = JSON.stringify(archivos);
     downloadURL('modulos/descargarElementos.php?usuario=' + user + '&carpeta=' + carpeta + '&elementos=' + elementos);
+}
+
+// Subida de elementos
+
+var subida = function subida() {
+    // Dropzone 1 -  en el visor de archivos
+    Dropzone.options.formularioSubida = {
+        paramName: "fileToUpload", // The name that will be used to transfer the file
+        maxFilesize: 50, // MB
+        init: function() {
+            this.on("processing", function(file) {
+                this.options.url = 'modulos/subirElementos.php?ruta='+$('#rutaActual').attr('data-ruta')+'&user='+$('#userNick').text();
+            });
+
+            this.on("complete", function(file){
+                $.bootstrapGrowl("Archivo subido a <b>" +$('#rutaActual').attr('data-ruta') + '</b>', {
+                    type: 'success',
+                    align: 'center',
+                    width: 'auto',
+                    allow_dismiss: false
+                });
+                $('#listado-archivos').fadeOut('fast', function () {
+                    $('#listado-archivos').load('bloques/listadoArchivos.php?uri=' + $('#rutaActual').attr('data-ruta'), function () {
+                        $('#listado-archivos').fadeIn('fast');
+                        $(function () {
+                            $.material.init();
+                            archivos = [];
+                            cargarFunciones();
+                        });
+                    });
+                });
+            });
+        }
+    };
+
+    // Dropzone 2 - en el botón de subida
+    Dropzone.options.botonSubida = {
+        paramName: "fileToUpload", // The name that will be used to transfer the file
+        maxFilesize: 50, // MB
+        init: function() {
+            this.on("processing", function(file) {
+                this.options.url = 'modulos/subirElementos.php?ruta='+$('#rutaActual').attr('data-ruta')+'&user='+$('#userNick').text();
+            });
+
+            this.on("complete", function(file){
+                $.bootstrapGrowl("Archivo subido a <b>" +$('#rutaActual').attr('data-ruta') + '</b>', {
+                    type: 'success',
+                    align: 'center',
+                    width: 'auto',
+                    allow_dismiss: false
+                });
+                $('#listado-archivos').fadeOut('fast', function () {
+                    $('#listado-archivos').load('bloques/listadoArchivos.php?uri=' + $('#rutaActual').attr('data-ruta'), function () {
+                        $('#listado-archivos').fadeIn('fast');
+                        $(function () {
+                            $.material.init();
+                            archivos = [];
+                            cargarFunciones();
+                        });
+                    });
+                });
+            });
+        }
+    };
 }
 cargarFunciones();

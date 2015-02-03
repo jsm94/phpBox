@@ -11,14 +11,21 @@
     margin: 0;
 }
 
-.navbar.subnav .navbar-nav>li>a {
+.navbar.subnav .navbar-nav > li a {
     padding-top: 8.5px;
     padding-bottom: 8.5px;
+    padding-left: 15px;
+    padding-right: 15px;
 }
 
-.subnav ul > li > a, .subnav li > a {
+.subnav ul > li > a, .subnav li a {
     display: table;
     height: 50px;
+}
+
+.navbar.subnav a {
+    color: rgb(115, 115, 115);
+    text-decoration: none;
 }
 
 .subnav i {
@@ -51,7 +58,7 @@
     vertical-align: middle
 }
 
-table#listado-archivos>tbody tr:first-child td {
+table#tabla-archivos>tbody tr:first-child td {
     border-top: 0;
 }
 
@@ -74,6 +81,14 @@ table#listado-archivos>tbody tr:first-child td {
 
 .list-icon.yellow, .yellow {
     color: #eba444
+}
+
+.list-icon.brown, .brown {
+    color: #5a2718
+}
+
+.list-icon.yelbrown, .yelbrown {
+    color: #886c4d
 }
 
 .dir:hover {
@@ -101,7 +116,8 @@ table#listado-archivos>tbody tr:first-child td {
 
 .navbar-header a.linkUser {
     color: rgba(255,255,255,.84);
-    margin-right: 15px
+    margin-right: 15px;
+    text-decoration: none
 }
 
 .nav-inline > li {
@@ -156,3 +172,9 @@ li.desappear {
 }
 
 /* FIN ANIMACIONES */
+
+
+/* Clases subida ficheros */
+.dz-preview {
+    display: none
+}
