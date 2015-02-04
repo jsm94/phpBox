@@ -1,3 +1,7 @@
+li a {
+    cursor: pointer
+}
+
 .center {
     text-align: center
 }
@@ -54,6 +58,12 @@
     font-size: 25px
 }
 /* Tablas */
+.wrapper-tabla {
+    height: 450px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
 .table td.list-name {
     vertical-align: middle
 }
@@ -155,8 +165,8 @@ li.desappear {
 
 /* Standard syntax */
 @keyframes appear {
-    from {background: red;}
-    to {background: yellow;}
+    from {left: 50px; opacity: .0}
+    to{left: 0px}
 }
 
 /* Chrome, Safari, Opera */
@@ -167,8 +177,8 @@ li.desappear {
 
 /* Standard syntax */
 @keyframes desappear {
-    from {background: red;}
-    to {background: yellow;}
+    from {top: 0px; opacity: 1}
+    to{top: 10px}
 }
 
 /* FIN ANIMACIONES */
@@ -178,3 +188,24 @@ li.desappear {
 .dz-preview {
     display: none
 }
+
+#formulario-subida .dz-default.dz-message {
+    display: none
+}
+
+
+/* SCROLLBAR */
+
+.wrapper-tabla::-webkit-scrollbar {
+    width: 7px;
+}
+.wrapper-tabla::-webkit-scrollbar-track:hover {
+    background: rgba(218, 218, 218, 0.2);
+    border-radius: 6px
+}
+.wrapper-tabla::-webkit-scrollbar-thumb {
+    background: #dadada;
+    border-radius: 6px
+}
+::-webkit-scrollbar-corner       { /* 6 */ }
+::-webkit-resizer                { /* 7 */ }

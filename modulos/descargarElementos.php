@@ -28,7 +28,8 @@ if($raizUsuario == $_SESSION['nick']){
             // iterate over the directory
             // add each file found to the archive
             foreach ($iterator as $key=>$value) {
-                $zip->addFile(realpath($key), str_replace($BOX_RAIZ . $BOX_prefixUser . $raizUsuario,"",$key)) or die ("ERROR: Could not add file: $key");
+                if(substr($key,-1) !== '.')
+                    $zip->addFile(realpath($key), str_replace($BOX_RAIZ . $BOX_prefixUser . $raizUsuario,"",$key)) or die ("ERROR: Could not add file: $key");
             }
         } else {
             $zip->addFile($carpeta . $elemento, $elemento);

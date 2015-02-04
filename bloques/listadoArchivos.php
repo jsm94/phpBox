@@ -33,7 +33,7 @@ if (is_dir($dir)) {
 }
 $folders = array_diff($folders, array('..', '.', '.tmp', '.pdf', '.backups'));
 // Añadimos a un array la ruta actual
-$ruta = str_replace($dirOrig,'',$dir) . '/';
+$ruta = str_replace($dirOrig,'',$dir);
 $breadcrumb = explode("/",$ruta);
 $breadcrumb_nombres = array_filter( $breadcrumb, 'strlen' );
 $breadcrumb_ruta = $breadcrumb_nombres;
@@ -62,7 +62,9 @@ for($i = 1; $i < $count ; $i++) {
                 }
                 ?>
             </ul>
+            <div class="wrapper-tabla">
             <table id="tabla-archivos" class="table">
+            <input id="rutaActualEnd" type="hidden" data-ruta="<?php echo $ruta . '/' ?>">
             <input id="rutaActual" type="hidden" data-ruta="<?php echo $ruta ?>">
             <?php
                 foreach ($folders as $file) {
@@ -125,5 +127,6 @@ for($i = 1; $i < $count ; $i++) {
 }
             ?>
             </table>
+               </div>
     </form>
 </div>

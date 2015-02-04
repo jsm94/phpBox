@@ -16,9 +16,9 @@ $("#iniciarSesion").click(function () {
                     allow_dismiss: false
                 });
                 // Al entrar en la sesión cargamos en tiempo real la web
-                $('#wrapper').fadeOut('slow', function () {
+                $('#wrapper').fadeOut('fast', function () {
                     $('#wrapper').load('bloques/box.php', function () {
-                        $('#wrapper').fadeIn('slow');
+                        $('#wrapper').fadeIn('fast');
                         $(function () {
                             $.material.init();
                             $(document).ready(cargarFunciones());
@@ -58,9 +58,9 @@ var cargarFunciones = function () {
 // Cargar listado-archivos
 var cargarListado = function () {
     var ruta = $(this).attr("data-ruta");
-    $('#listado-archivos').fadeOut('slow', function () {
+    $('#listado-archivos').fadeOut('fast', function () {
         $('#listado-archivos').load('bloques/listadoArchivos.php?ruta=' + ruta, function () {
-            $('#listado-archivos').fadeIn('slow');
+            $('#listado-archivos').fadeIn('fast');
             $(function () {
                 $.material.init();
                 cargarFunciones();
@@ -71,7 +71,7 @@ var cargarListado = function () {
 
 // Crear carpeta
 var crearCarpeta = function() {
-    var carpeta = $('#rutaActual').attr('data-ruta') + $('#nombreCarpeta').val();
+    var carpeta = $('#rutaActualEnd').attr('data-ruta') + $('#nombreCarpeta').val();
     var user = $('#userNick').text();
     $.get("modulos/crearCarpeta.php", {
         usuario: user,
@@ -79,9 +79,9 @@ var crearCarpeta = function() {
     }, function (data) {
         if (data == "ok") {
             $('#modal-crearCarpeta').modal('toggle');
-            $('#listado-archivos').fadeOut('slow', function () {
+            $('#listado-archivos').fadeOut('fast', function () {
                 $('#listado-archivos').load('bloques/listadoArchivos.php?uri=' + $('#rutaActual').attr('data-ruta'), function () {
-                    $('#listado-archivos').fadeIn('slow');
+                    $('#listado-archivos').fadeIn('fast');
                     $(function () {
                         $.material.init();
                         cargarFunciones();
@@ -99,6 +99,8 @@ var checkboxes = function(){
     var et = $('#numElementos');
     if (check.prop("checked") == true) {
         archivos.push(check.attr('data-file'));
+        $('#boton-eliminar').show();
+        $('#boton-descargar').show();
         $('#boton-eliminar').removeClass('hidden');
         $('#boton-descargar').removeClass('hidden');
         $('#boton-eliminar').removeClass('desappear');
@@ -113,6 +115,12 @@ var checkboxes = function(){
             $('#boton-eliminar').addClass('desappear');
             $('#boton-descargar').removeClass('appear');
             $('#boton-descargar').addClass('desappear');
+            setTimeout(function() {
+                if($('#boton-descargar').hasClass('desappear')){
+                    $('#boton-eliminar').hide(); // alternative to menu.style.display = 'none';
+                    $('#boton-descargar').hide();
+                }
+            }, 1000)
         }
         et.text((archivos.length == 1) ? archivos.length + ' elemento' : archivos.length + ' elementos');
     }
@@ -120,7 +128,7 @@ var checkboxes = function(){
 
 // Eliminar elementos
 var eliminarElementos = function() {
-    var carpeta = $('#rutaActual').attr('data-ruta');
+    var carpeta = $('#rutaActualEnd').attr('data-ruta');
     var user = $('#userNick').text();
     var elementos = JSON.stringify(archivos);
     $.get("modulos/eliminarElementos.php", {
@@ -132,11 +140,21 @@ var eliminarElementos = function() {
             $('#modal-eliminarElementos').modal('toggle');
             $('#listado-archivos').fadeOut('fast', function () {
                 $('#listado-archivos').load('bloques/listadoArchivos.php?uri=' + $('#rutaActual').attr('data-ruta'), function () {
-                    $('#listado-archivos').fadeIn('slow');
+                    $('#listado-archivos').fadeIn('fast');
                     $(function () {
                         $.material.init();
-                        archivos = [];
                         cargarFunciones();
+                        $('#boton-eliminar').removeClass('appear');
+                        $('#boton-eliminar').addClass('desappear');
+                        $('#boton-descargar').removeClass('appear');
+                        $('#boton-descargar').addClass('desappear');
+                        setTimeout(function() {
+                            if($('#boton-descargar').hasClass('desappear')){
+                                $('#boton-eliminar').hide(); // alternative to menu.style.display = 'none';
+                                $('#boton-descargar').hide();
+                            }
+                        }, 1000)
+                        archivos = [];
                     });
                 });
             });
@@ -157,7 +175,7 @@ var downloadURL = function downloadURL(url) {
 };
 
 var descargarElementos = function() {
-    var carpeta = $('#rutaActual').attr('data-ruta');
+    var carpeta = $('#rutaActualEnd').attr('data-ruta');
     var user = $('#userNick').text();
     var elementos = JSON.stringify(archivos);
     downloadURL('modulos/descargarElementos.php?usuario=' + user + '&carpeta=' + carpeta + '&elementos=' + elementos);
@@ -172,11 +190,11 @@ var subida = function subida() {
         maxFilesize: 50, // MB
         init: function() {
             this.on("processing", function(file) {
-                this.options.url = 'modulos/subirElementos.php?ruta='+$('#rutaActual').attr('data-ruta')+'&user='+$('#userNick').text();
+                this.options.url = 'modulos/subirElementos.php?ruta='+$('#rutaActualEnd').attr('data-ruta')+'&user='+$('#userNick').text();
             });
 
             this.on("complete", function(file){
-                $.bootstrapGrowl("Archivo subido a <b>" +$('#rutaActual').attr('data-ruta') + '</b>', {
+                $.bootstrapGrowl("Archivo subido a <b>" +$('#rutaActualEnd').attr('data-ruta') + '</b>', {
                     type: 'success',
                     align: 'center',
                     width: 'auto',
@@ -202,11 +220,11 @@ var subida = function subida() {
         maxFilesize: 50, // MB
         init: function() {
             this.on("processing", function(file) {
-                this.options.url = 'modulos/subirElementos.php?ruta='+$('#rutaActual').attr('data-ruta')+'&user='+$('#userNick').text();
+                this.options.url = 'modulos/subirElementos.php?ruta='+$('#rutaActualEnd').attr('data-ruta')+'&user='+$('#userNick').text();
             });
 
             this.on("complete", function(file){
-                $.bootstrapGrowl("Archivo subido a <b>" +$('#rutaActual').attr('data-ruta') + '</b>', {
+                $.bootstrapGrowl("Archivo subido a <b>" +$('#rutaActualEnd').attr('data-ruta') + '</b>', {
                     type: 'success',
                     align: 'center',
                     width: 'auto',
