@@ -9,8 +9,13 @@ include_once 'subnav.php';
     <div class="row">
         <div class="col-md-4"></div>
         <div class="col-md-8">
-           <?php include_once 'listadoArchivos.php'?>
+           <?php include_once 'listadoArchivos.php' ?>
         </div>
-        <?php include_once 'modals.php' ?>
     </div>
+    <div class="row">
+        <div class="col-md-4">
+            <?php include_once 'listadoBackups.php' ?>
+        </div>
+    </div>
+    <?php include_once 'modals.php' ?>
 </div>

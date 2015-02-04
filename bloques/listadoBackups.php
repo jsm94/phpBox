@@ -34,6 +34,18 @@ if (is_dir($dir)) {
 $folders = array_diff($folders, array('..', '.')); // Eliminamos las carpetas indicadas
 ?>
 <div id="listado-backups">
+       <!-- subnav backups -->
+    <nav class="navbar grey subnav" role="navigation">
+        <div class="container">
+            <div class="navbar-header nav navbar-nav nav-inline">
+                <li id="boton-eliminar-backup" class="disabled"><a role="menuitem" data-target="#modal-eliminarElementos" data-toggle="modal"><i class="mdi-action-delete"></i><span class="text-option hidden-xs">Eliminar</span></a>
+                </li>
+                <li id="boton-descargar-backup" class="disabled"><a role="menuitem" data-target="#modal-descargarElementos" data-toggle="modal"><i class="mdi-content-archive"></i><span class="text-option hidden-xs">Descargar</span></a>
+                </li>
+            </div>
+        </div>
+    </nav>
+
         <div class="wrapper-tabla">
             <table id="tabla-backups" class="table">
                 <?php
@@ -75,7 +87,7 @@ foreach ($files as $file) {
                 <td>
                     <div class="checkbox">
                         <label>
-                            <input data-file="<?php echo $file ?>" type="checkbox" class="file-check">
+                            <input data-file="<?php echo $file ?>" type="checkbox" class="backup-check">
                         </label>
                     </div>
                 </td>
