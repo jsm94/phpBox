@@ -11,13 +11,15 @@
             </li>
             <li id="boton-subir"><form id="boton-subida" action="modulos/subirElementos.php" class="dropzone"><div class="dz-message" data-dz-message><a href="#"><i class="mdi-file-cloud-upload"></i><span class="text-option hidden-xs">Subir</span></a></div></form>
             </li>
-            <li id="boton-eliminarElementos" class="hidden appear"><a role="menuitem" data-target="#modal-eliminarElementos" data-toggle="modal"><i class="mdi-action-delete"></i><span class="text-option hidden-xs">Eliminar</span></a>
+            <li id="boton-eliminar" class="hidden appear"><a role="menuitem" data-target="#modal-eliminarElementos" data-toggle="modal"><i class="mdi-action-delete"></i><span class="text-option hidden-xs">Eliminar</span></a>
             </li>
-            <li id="boton-descargar" class="hidden appear"><a role="menuitem" data-target="#modal-descargarElementos" data-toggle="modal"><i class="mdi-file-cloud-download"></i><span class="text-option hidden-xs">Descargar</span></a>
+            <li id="boton-descargar" class="hidden appear"><a role="menuitem" data-target="#modal-descargarElementos" data-toggle="modal"><i class="mdi-content-archive"></i><span class="text-option hidden-xs">Descargar</span></a>
+            </li>
+            <li id="boton-backup" class="hidden appear"><a role="menuitem"><i class="mdi-action-note-add"></i><span class="text-option hidden-xs">Backup</span></a>
             </li>
         </div>
+        <!-- Colapsed menu -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <!-- Colapsed menu -->
             <ul class="nav navbar-nav hidden-md hidden-sm hidden-lg v-align" role="menu" aria-labelledby="menu-nuevo">
                 <li id="crearCarpeta" role="presentation"><a role="menuitem" href="#" data-target="#modal-crearCarpeta" data-toggle="modal"><i class="mdi-file-folder"></i><span>Carpeta</span></a>
                 </li>

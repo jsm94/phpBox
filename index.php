@@ -3,7 +3,7 @@ session_start();
 include_once('global.php')
 ?>
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="no-selection">
 <!-- Cabecera de la web -->
 <?php include_once $BOX_BLOCKS . 'head.php' ?>
 <body>

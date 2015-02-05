@@ -2,6 +2,18 @@ li a {
     cursor: pointer
 }
 
+.no-selection {
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+a {
+    -webkit-user-drag: none;
+    -moz-user-drag: none;
+    -ms-user-drag: none;
+}
+
 .center {
     text-align: center
 }
@@ -11,8 +23,17 @@ li a {
     color: rgb(115, 115, 115);
 }
 
+.navbar.lite {
+    background-color: rgba(255, 255, 255, 0);
+    color: rgb(115, 115, 115);
+}
+
 .no-margin {
     margin: 0;
+}
+
+li.disabled {
+    color: rgba(218, 218, 218, 5);
 }
 
 .navbar.subnav .navbar-nav > li a {
@@ -59,13 +80,17 @@ li a {
 }
 /* Tablas */
 .wrapper-tabla {
-    height: 450px;
+    height: 40vh;
     overflow-x: hidden;
     overflow-y: scroll;
 }
 
 .table td.list-name {
-    vertical-align: middle
+    vertical-align: middle;
+}
+
+td.list-name.dir {
+    width: 60%;
 }
 
 table#tabla-archivos>tbody tr:first-child td {
@@ -75,6 +100,12 @@ table#tabla-archivos>tbody tr:first-child td {
 .list-icon {
     font-size: 30px;
     text-align: center;
+}
+
+.list-icon.edit {
+    text-align: left;
+    font-size: 25px;
+    vertical-align: bottom;
 }
 
 .list-icon.blue, .blue {

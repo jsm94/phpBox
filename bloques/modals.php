@@ -43,3 +43,26 @@
         </div>
     </div>
 </div>
+<!-- Eliminar backups -->
+<div class="modal fade" id="modal-eliminarBackups" tabindex="-1" role="dialog" aria-labelledby="myModalLabel3" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel3">Eliminar backups</h4>
+            </div>
+
+            <div class="modal-body">
+                <div class="form-group">
+                    <p>¿Está seguro de eliminar <span id="numBackups"></span>?</p>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                <a href="#" class="btn btn-danger eliminarElementos" id="boton-eliminarBackups">Eliminar</a>
+            </div>
+        </div>
+    </div>
+</div>

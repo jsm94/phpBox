@@ -2,7 +2,7 @@
 session_start();
 include_once '../global.php';
 include_once 'global.php';
-ini_set('display_errors', 'On');
+//ini_set('display_errors', 'On');
 $dirOrig = $BOX_RAIZ . $BOX_prefixUser . $_SESSION['nick'];
 $dir = $dirOrig;
 
@@ -79,6 +79,9 @@ for($i = 1; $i < $count ; $i++) {
                                     </label>
                                 </div>
                             </td>
+                            <td class="list-icon edit">
+                                <i class="mdi-content-create"></i>
+                            </td>
                         </tr><?php
                 }
                 foreach ($files as $file) {
@@ -122,6 +125,9 @@ for($i = 1; $i < $count ; $i++) {
                             <input data-file="<?php echo $file ?>" type="checkbox" class="file-check">
                         </label>
                     </div>
+                </td>
+                <td class="list-icon edit">
+                    <i class="mdi-content-create"></i>
                 </td>
                 </tr><?php
 }
