@@ -102,7 +102,7 @@ var backups = [];
 var checkboxes = function () {
     var check = $(this);
     var et = $('#numElementos');
-    if (check.prop("checked") == true) {
+    if (check.prop("checked") === true) {
         archivos.push(check.attr('data-file'));
         $('#boton-eliminar').show();
         $('#boton-descargar').show();
@@ -119,7 +119,7 @@ var checkboxes = function () {
         et.text((archivos.length == 1) ? archivos.length + ' elemento' : archivos.length + ' elementos');
     } else {
         archivos.splice(archivos.indexOf(check.attr('data-file')), 1);
-        if (archivos.length == 0) {
+        if (archivos.length === 0) {
             $('#boton-eliminar').removeClass('appear');
             $('#boton-eliminar').addClass('desappear');
             $('#boton-descargar').removeClass('appear');

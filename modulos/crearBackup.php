@@ -5,7 +5,8 @@ include_once 'global.php';
 $raizUsuario = $_GET['usuario'];
 $carpeta = $BOX_RAIZ . $BOX_prefixUser . $raizUsuario . $_GET['carpeta'];
 $elementos = json_decode($_GET['elementos']);
-$bk = $BOX_RAIZ . $BOX_prefixUser . $raizUsuario . '/.backups/backup-'. date('d-m-Y_H-i-s') .'.zip';
+$fecha = date('d-m-Y_H-i-s');
+$bk = $BOX_RAIZ . $BOX_prefixUser . $raizUsuario . '/.backups/backup-'. $fecha .'.zip';
 if(file_exists($bk)) unlink($bk);
 
 if($raizUsuario == $_SESSION['nick']){
