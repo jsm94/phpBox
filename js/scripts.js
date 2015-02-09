@@ -46,6 +46,13 @@ $("#iniciarSesion").click(function () {
 
 var cargarFunciones = function () {
     // Cambiar de directorio
+    archivos = [];
+    backups = [];
+    informes = [];
+    checkboxes();
+    checkBackups();
+    checkInformes();
+    $(".checkbox input").prop("checked", false);
     $(".dir").click(cargarListado);
     $(".breadcrumb li>a").click(cargarListado);
     $('#boton-crearCarpeta').click(crearCarpeta);
@@ -56,6 +63,7 @@ var cargarFunciones = function () {
     $('#boton-eliminarBackups').click(eliminarBackups);
     $('.file-check').click(checkboxes);
     $('.backup-check').click(checkBackups);
+    $('.informe-check').click(checkInformes);
     subida();
 }
 
@@ -99,6 +107,7 @@ var crearCarpeta = function () {
 // Checkboxes
 var archivos = [];
 var backups = [];
+var informes = [];
 var checkboxes = function () {
     var check = $(this);
     var et = $('#numElementos');
@@ -155,6 +164,26 @@ var checkBackups = function () {
             console.log(backups.length);
         }
         et.text((backups.length == 1) ? backups.length + ' elemento' : backups.length + ' elementos');
+    }
+}
+
+var checkInformes = function () {
+    var check = $(this);
+    //var et = $('#numBackups');
+    if (check.prop("checked") == true) {
+        informes.push(check.attr('data-file'));
+        $('#boton-eliminar-informes').removeClass('disabled');
+        $('#boton-descargar-informes').removeClass('disabled');
+        //console.log(backups.length);
+        //et.text((backups.length == 1) ? backups.length + ' elemento' : backups.length + ' elementos');
+    } else {
+        informes.splice(backups.indexOf(check.attr('data-file')), 1);
+        if (informes.length == 0) {
+            $('#boton-eliminar-informes').addClass('disabled');
+            $('#boton-descargar-informes').addClass('disabled');
+            //console.log(backups.length);
+        }
+        //et.text((backups.length == 1) ? backups.length + ' elemento' : backups.length + ' elementos');
     }
 }
 

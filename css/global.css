@@ -161,6 +161,15 @@ table#tabla-archivos>tbody tr:first-child td {
     text-decoration: none
 }
 
+.nav-inline {
+    margin: 0;
+}
+
+.nav-inline .navbar-brand {
+    height: 50px;
+    line-height: 25px;
+}
+
 .nav-inline > li {
     display: inline;
     float: left;

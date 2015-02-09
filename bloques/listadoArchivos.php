@@ -31,7 +31,7 @@ if (is_dir($dir)) {
         closedir($dh);
     }
 }
-$folders = array_diff($folders, array('..', '.', '.tmp', '.pdf', '.backups'));
+$folders = array_diff($folders, array('..', '.', '.tmp', '.pdf', '.backups', '.informes'));
 // Añadimos a un array la ruta actual
 $ruta = str_replace($dirOrig,'',$dir);
 $breadcrumb = explode("/",$ruta);
