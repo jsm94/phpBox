@@ -8,7 +8,7 @@ $("#iniciarSesion").click(function () {
     var datos = $("#formularioInicioSesion").serializeArray();
     $.post("modulos/iniciarSesion.php", datos, function (result) {
         if (result > 0) {
-            if (result === 1) {
+            if (result == 1) {
                 $.bootstrapGrowl("Conexión establecida", {
                     type: 'success',
                     align: 'center',
@@ -66,9 +66,10 @@ var cargarFunciones = function () {
     $('#boton-eliminar-informes').click(modalInforme);
     $('#boton-eliminarInformes').click(eliminarInformes);
 
+    /*
     $('.file-check').click(checkboxes);
     $('.backup-check').click(checkBackups);
-    $('.informe-check').click(checkInformes);
+    $('.informe-check').click(checkInformes);*/
     subida();
 }
 
@@ -159,7 +160,7 @@ var checkBackups = function () {
         backups.push(check.attr('data-file'));
         $('#boton-eliminar-backup').removeClass('disabled');
         $('#boton-descargar-backup').removeClass('disabled');
-        console.log("Backups: " + backups.length);
+        //console.log("Backups: " + backups.length);
         et.text((backups.length === 1) ? backups.length + ' elemento' : backups.length + ' elementos');
     } else {
         backups.splice(backups.indexOf(check.attr('data-file')), 1);
@@ -167,7 +168,7 @@ var checkBackups = function () {
             $('#boton-eliminar-backup').addClass('disabled');
             $('#boton-descargar-backup').addClass('disabled');
         }
-        console.log("Backups: " + backups.length);
+        //console.log("Backups: " + backups.length);
         et.text((backups.length === 1) ? backups.length + ' elemento' : backups.length + ' elementos');
     }
 }
@@ -179,15 +180,15 @@ var checkInformes = function () {
         informes.push(check.attr('data-file'));
         $('#boton-eliminar-informes').removeClass('disabled');
         $('#boton-descargar-informes').removeClass('disabled');
-        //console.log(backups.length);
+        console.log("Informes: " + informes);
         et.text((informes.length === 1) ? informes.length + ' informe' : informes.length + ' informes');
     } else {
         informes.splice(informes.indexOf(check.attr('data-file')), 1);
         if (informes.length === 0) {
             $('#boton-eliminar-informes').addClass('disabled');
             $('#boton-descargar-informes').addClass('disabled');
-            //console.log(backups.length);
         }
+        console.log("Informes: " + informes);
         et.text((informes.length === 1) ? informes.length + ' informe' : informes.length + ' informes');
     }
 }
@@ -277,6 +278,17 @@ var crearBackup = function () {
                     });
                 });
             });
+
+            /* Cargar listado informes
+            $('#listado-informes').fadeOut('fast', function () {
+                $('#listado-informes').load('bloques/listadoInformes.php', function () {
+                    $('#listado-informes').fadeIn('fast');
+                    $(function () {
+                        $.material.init();
+                        cargarFunciones();
+                    });
+                });
+            });*/
         }
     });
 }
@@ -411,4 +423,10 @@ var subida = function subida() {
         }
     };
 }
+
+// Con la función 'on' se cargarán eventos incluso en los elementos nuevos cargados en el DOM
+// Modificar cargarFunciones()
+$('body').on('click', '.file-check', checkboxes);
+$('body').on('click', '.backup-check', checkBackups);
+$('body').on('click', '.informe-check', checkInformes);
 cargarFunciones();
