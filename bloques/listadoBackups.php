@@ -30,15 +30,13 @@ $folders = array_diff($folders, array('..', '.')); // Eliminamos las carpetas in
 <div id="listado-backups">
        <!-- subnav backups -->
     <nav class="navbar lite subnav no-margin" role="navigation">
-        <div class="container">
             <div class="navbar-header nav navbar-nav nav-inline">
                 <a class="navbar-brand">Backups</a>
-                <li id="boton-eliminar-backup" class="disabled"><a role="menuitem" data-target="#modal-eliminarBackups" data-toggle="modal"><i class="mdi-action-delete"></i><span class="text-option hidden-xs">Eliminar</span></a>
+                <li id="boton-eliminar-backup" class="disabled"><a role="menuitem"><i class="mdi-action-delete"></i><span class="text-option hidden-xs">Eliminar</span></a>
                 </li>
                 <li id="boton-descargar-backup" class="disabled"><a role="menuitem"><i class="mdi-content-archive"></i><span class="text-option hidden-xs">Descargar</span></a>
                 </li>
             </div>
-        </div>
     </nav>
         <!-- //subnav backups -->
 

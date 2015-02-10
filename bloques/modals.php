@@ -43,6 +43,7 @@
         </div>
     </div>
 </div>
+
 <!-- Eliminar backups -->
 <div class="modal fade" id="modal-eliminarBackups" tabindex="-1" role="dialog" aria-labelledby="myModalLabel3" aria-hidden="true">
     <div class="modal-dialog">
@@ -62,6 +63,30 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
                 <a href="#" class="btn btn-danger eliminarElementos" id="boton-eliminarBackups">Eliminar</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Eliminar Informes -->
+<div class="modal fade" id="modal-eliminarInformes" tabindex="-1" role="dialog" aria-labelledby="myModalLabel4" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel4">Eliminar Informes</h4>
+            </div>
+
+            <div class="modal-body">
+                <div class="form-group">
+                    <p>¿Está seguro de eliminar <span id="numInformes"></span>?</p>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                <a href="#" class="btn btn-danger eliminarElementos" id="boton-eliminarInformes">Eliminar</a>
             </div>
         </div>
     </div>

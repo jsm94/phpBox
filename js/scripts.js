@@ -8,7 +8,7 @@ $("#iniciarSesion").click(function () {
     var datos = $("#formularioInicioSesion").serializeArray();
     $.post("modulos/iniciarSesion.php", datos, function (result) {
         if (result > 0) {
-            if (result == 1) {
+            if (result === 1) {
                 $.bootstrapGrowl("Conexión establecida", {
                     type: 'success',
                     align: 'center',
@@ -55,12 +55,17 @@ var cargarFunciones = function () {
     $(".checkbox input").prop("checked", false);
     $(".dir").click(cargarListado);
     $(".breadcrumb li>a").click(cargarListado);
+
     $('#boton-crearCarpeta').click(crearCarpeta);
     $('#boton-eliminarElementos').click(eliminarElementos);
     $('#boton-descargar').click(descargarElementos);
     $('#boton-backup').click(crearBackup);
+    $('#boton-eliminar-backup').click(modalBackup);
     $('#boton-descargar-backup').click(descargarBackups);
     $('#boton-eliminarBackups').click(eliminarBackups);
+    $('#boton-eliminar-informes').click(modalInforme);
+    $('#boton-eliminarInformes').click(eliminarInformes);
+
     $('.file-check').click(checkboxes);
     $('.backup-check').click(checkBackups);
     $('.informe-check').click(checkInformes);
@@ -125,7 +130,7 @@ var checkboxes = function () {
         $('#boton-descargar').addClass('appear');
         $('#boton-backup').removeClass('desappear');
         $('#boton-backup').addClass('appear');
-        et.text((archivos.length == 1) ? archivos.length + ' elemento' : archivos.length + ' elementos');
+        et.text((archivos.length === 1) ? archivos.length + ' elemento' : archivos.length + ' elementos');
     } else {
         archivos.splice(archivos.indexOf(check.attr('data-file')), 1);
         if (archivos.length === 0) {
@@ -143,47 +148,47 @@ var checkboxes = function () {
                 }
             }, 1000)
         }
-        et.text((archivos.length == 1) ? archivos.length + ' elemento' : archivos.length + ' elementos');
+        et.text((archivos.length === 1) ? archivos.length + ' elemento' : archivos.length + ' elementos');
     }
 }
 
 var checkBackups = function () {
     var check = $(this);
     var et = $('#numBackups');
-    if (check.prop("checked") == true) {
+    if (check.prop("checked") === true) {
         backups.push(check.attr('data-file'));
         $('#boton-eliminar-backup').removeClass('disabled');
         $('#boton-descargar-backup').removeClass('disabled');
-        console.log(backups.length);
-        et.text((backups.length == 1) ? backups.length + ' elemento' : backups.length + ' elementos');
+        console.log("Backups: " + backups.length);
+        et.text((backups.length === 1) ? backups.length + ' elemento' : backups.length + ' elementos');
     } else {
         backups.splice(backups.indexOf(check.attr('data-file')), 1);
-        if (backups.length == 0) {
+        if (backups.length === 0) {
             $('#boton-eliminar-backup').addClass('disabled');
             $('#boton-descargar-backup').addClass('disabled');
-            console.log(backups.length);
         }
-        et.text((backups.length == 1) ? backups.length + ' elemento' : backups.length + ' elementos');
+        console.log("Backups: " + backups.length);
+        et.text((backups.length === 1) ? backups.length + ' elemento' : backups.length + ' elementos');
     }
 }
 
 var checkInformes = function () {
     var check = $(this);
-    //var et = $('#numBackups');
-    if (check.prop("checked") == true) {
+    var et = $('#numInformes');
+    if (check.prop("checked") === true) {
         informes.push(check.attr('data-file'));
         $('#boton-eliminar-informes').removeClass('disabled');
         $('#boton-descargar-informes').removeClass('disabled');
         //console.log(backups.length);
-        //et.text((backups.length == 1) ? backups.length + ' elemento' : backups.length + ' elementos');
+        et.text((informes.length === 1) ? informes.length + ' informe' : informes.length + ' informes');
     } else {
-        informes.splice(backups.indexOf(check.attr('data-file')), 1);
-        if (informes.length == 0) {
+        informes.splice(informes.indexOf(check.attr('data-file')), 1);
+        if (informes.length === 0) {
             $('#boton-eliminar-informes').addClass('disabled');
             $('#boton-descargar-informes').addClass('disabled');
             //console.log(backups.length);
         }
-        //et.text((backups.length == 1) ? backups.length + ' elemento' : backups.length + ' elementos');
+        et.text((informes.length === 1) ? informes.length + ' informe' : informes.length + ' informes');
     }
 }
 
@@ -191,6 +196,7 @@ var checkInformes = function () {
 
 // Eliminar elementos
 var eliminarElementos = function () {
+        //if(archivos.length < 1) $('#modal-eliminarElementos').modal('hide');
         var carpeta = $('#rutaActualEnd').attr('data-ruta');
         var user = $('#userNick').text();
         var elementos = JSON.stringify(archivos);
@@ -275,6 +281,16 @@ var crearBackup = function () {
     });
 }
 
+// Modal eliminar backups
+var modalBackup = function () {
+    if(backups.length > 0) $('#modal-eliminarBackups').modal('show');
+}
+
+// Modal eliminar informes
+var modalInforme = function () {
+    if(informes.length > 0) $('#modal-eliminarInformes').modal('show');
+}
+
 // Eliminar backup
 var eliminarBackups = function () {
     var carpeta = '/.backups/';
@@ -303,6 +319,35 @@ var eliminarBackups = function () {
     });
 }
 
+
+// Eliminar Informe
+
+var eliminarInformes = function () {
+    var carpeta = '/.informes/';
+    var user = $('#userNick').text();
+    var elementos = JSON.stringify(informes);
+    $.get("modulos/eliminarElementos.php", {
+        usuario: user,
+        carpeta: carpeta,
+        elementos: elementos
+    }, function (data) {
+        if (data == "ok") {
+            $('#modal-eliminarInformes').modal('toggle');
+            $('#listado-informes').fadeOut('fast', function () {
+                $('#listado-informes').load('bloques/listadoInformes.php', function () {
+                    $('#listado-informes').fadeIn('fast');
+                    $(function () {
+                        $.material.init();
+                        cargarFunciones();
+                        $('#boton-eliminar-informes').addClass('disabled');
+                        $('#boton-descargar-informes').addClass('disabled');
+                        informes = [];
+                    });
+                });
+            });
+        }
+    });
+}
 
 // Subida de elementos
 var subida = function subida() {
