@@ -65,6 +65,7 @@ var cargarFunciones = function () {
     $('#boton-eliminarBackups').click(eliminarBackups);
     $('#boton-eliminar-informes').click(modalInforme);
     $('#boton-eliminarInformes').click(eliminarInformes);
+    $('#boton-descargar-informes').click(descargarInformes);
 
     /*
     $('.file-check').click(checkboxes);
@@ -255,6 +256,16 @@ var descargarBackups = function () {
     var user = $('#userNick').text();
     var elementos = JSON.stringify(backups);
     downloadURL('modulos/descargarElementos.php?usuario=' + user + '&carpeta=/.backups/&elementos=' + elementos);
+}
+
+// Descargar informes no funciona
+var descargarInformes = function () {
+    var user = $('#userNick').text();
+    var elementos = JSON.stringify(informes);
+    //var elementos = JSON.stringify(backups);
+    //downloadURL('modulos/descargarElementos.php?usuario=' + user + '&carpeta=/.backups/&elementos=' + elementos);
+    downloadURL('modulos/descargarElementos.php?usuario=' + user + '&carpeta=/.informes/&elementos=' + elementos);
+    alert('descargar: ' + elementos);
 }
 
 // Crear backup
