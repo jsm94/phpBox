@@ -265,7 +265,7 @@ var descargarInformes = function () {
     //var elementos = JSON.stringify(backups);
     //downloadURL('modulos/descargarElementos.php?usuario=' + user + '&carpeta=/.backups/&elementos=' + elementos);
     downloadURL('modulos/descargarElementos.php?usuario=' + user + '&carpeta=/.informes/&elementos=' + elementos);
-    alert('descargar: ' + elementos);
+    //alert('descargar: ' + elementos);
 }
 
 // Crear backup
