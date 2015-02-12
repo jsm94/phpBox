@@ -53,6 +53,7 @@ var cargarFunciones = function () {
     checkBackups();
     checkInformes();
     $(".checkbox input").prop("checked", false);
+    /*
     $(".dir").click(cargarListado);
     $(".breadcrumb li>a").click(cargarListado);
 
@@ -65,7 +66,7 @@ var cargarFunciones = function () {
     $('#boton-eliminarBackups').click(eliminarBackups);
     $('#boton-eliminar-informes').click(modalInforme);
     $('#boton-eliminarInformes').click(eliminarInformes);
-    $('#boton-descargar-informes').click(descargarInformes);
+    $('#boton-descargar-informes').click(descargarInformes);*/
 
     /*
     $('.file-check').click(checkboxes);
@@ -304,6 +305,45 @@ var crearBackup = function () {
     });
 }
 
+// Crear Informe
+var crearInforme = function () {
+    var user = $('#userNick').text();
+    $.get('modulos/crearInforme.php', {
+        usuario: user
+    }, function (data) {
+        if (data === '1') {
+            // Mensaje
+            $.bootstrapGrowl("Informe creado", {
+                type: 'success',
+                align: 'center',
+                width: 'auto',
+                allow_dismiss: false
+            });
+            // Cargar listado backups
+            $('#listado-informes').fadeOut('fast', function () {
+                $('#listado-informes').load('bloques/listadoInformes.php', function () {
+                    $('#listado-informes').fadeIn('fast');
+                    $(function () {
+                        $.material.init();
+                        cargarFunciones();
+                    });
+                });
+            });
+
+            /* Cargar listado informes
+            $('#listado-informes').fadeOut('fast', function () {
+                $('#listado-informes').load('bloques/listadoInformes.php', function () {
+                    $('#listado-informes').fadeIn('fast');
+                    $(function () {
+                        $.material.init();
+                        cargarFunciones();
+                    });
+                });
+            })*/
+        }
+    });
+}
+
 // Modal eliminar backups
 var modalBackup = function () {
     if(backups.length > 0) $('#modal-eliminarBackups').modal('show');
@@ -440,4 +480,17 @@ var subida = function subida() {
 $('body').on('click', '.file-check', checkboxes);
 $('body').on('click', '.backup-check', checkBackups);
 $('body').on('click', '.informe-check', checkInformes);
+$('body').on('click', '#boton-nuevo-informe', crearInforme);
+$('body').on('click', '.breadcrumb li>a', cargarListado);
+$('body').on('click', '.dir', cargarListado);
+$('body').on('click', '#boton-crearCarpeta', crearCarpeta);
+$('body').on('click', '#boton-eliminarElementos', eliminarElementos);
+$('body').on('click', '#boton-descargar', descargarElementos);
+$('body').on('click', '#boton-backup', crearBackup);
+$('body').on('click', '#boton-eliminar-backup', modalBackup);
+$('body').on('click', '#boton-descargar-backup', descargarBackups);
+$('body').on('click', '#boton-eliminarBackups', eliminarBackups);
+$('body').on('click', '#boton-eliminar-informes', modalInforme);
+$('body').on('click', '#boton-eliminarInformes', eliminarInformes);
+$('body').on('click', '#boton-descargar-informes', descargarInformes);
 cargarFunciones();

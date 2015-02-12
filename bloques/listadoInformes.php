@@ -32,6 +32,8 @@ $folders = array_diff($folders, array('..', '.')); // Eliminamos las carpetas in
     <nav class="navbar lite subnav no-margin" role="navigation">
             <div class="navbar-header nav navbar-nav nav-inline">
                 <a class="navbar-brand">Informes</a>
+                <li id="boton-nuevo-informe"><a role="menuitem"><i class="mdi-content-add-circle"></i><span class="text-option hidden-xs">Nuevo</span></a>
+                </li>
                 <li id="boton-eliminar-informes" class="disabled"><a role="menuitem"><i class="mdi-action-delete"></i><span class="text-option hidden-xs">Eliminar</span></a>
                 </li>
                 <li id="boton-descargar-informes" class="disabled"><a role="menuitem"><i class="mdi-content-archive"></i><span class="text-option hidden-xs">Descargar</span></a>

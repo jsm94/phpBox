@@ -7,7 +7,6 @@ $carpeta = $BOX_RAIZ . $BOX_prefixUser . $raizUsuario . $_GET['carpeta'];
 $elementos = json_decode($_GET['elementos']);
 $fecha = date('d-m-Y_H-i-s');
 $bk = $BOX_RAIZ . $BOX_prefixUser . $raizUsuario . '/.backups/backup-'. $fecha .'.zip';
-if(file_exists($bk)) unlink($bk);
 
 if($raizUsuario == $_SESSION['nick']){
     // create object
