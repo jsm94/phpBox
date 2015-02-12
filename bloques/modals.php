@@ -91,3 +91,27 @@
         </div>
     </div>
 </div>
+
+<!-- Renombrar elemento -->
+<div class="modal fade" id="modal-rename" tabindex="-1" role="dialog" aria-labelledby="myModalLabe5" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel5">Renombrar</h4>
+            </div>
+
+            <div class="modal-body">
+                <div class="form-group">
+                    <input class="form-control floating-label" id="txtRename" type="text" placeholder="Escribe el nuevo nombre del elemento">
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                <a href="#" class="btn btn-success renameFile" id="boton-renameFile">Renombrar</a>
+            </div>
+        </div>
+    </div>
+</div>

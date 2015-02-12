@@ -21,7 +21,7 @@ $("#iniciarSesion").click(function () {
                         $('#wrapper').fadeIn('fast');
                         $(function () {
                             $.material.init();
-                            $(document).ready(cargarFunciones());
+                            $(document).ready(cargarFunciones);
                         });
                     });
                 });
@@ -222,7 +222,7 @@ var eliminarElementos = function () {
                             $('#boton-descargar').addClass('desappear');
                             setTimeout(function () {
                                 if ($('#boton-descargar').hasClass('desappear')) {
-                                    $('#boton-eliminar').hide(); // alternative to menu.style.display = 'none';
+                                    $('#boton-eliminar').hide(); // alternativa a menu.style.display = 'none';
                                     $('#boton-descargar').hide();
                                 }
                             }, 1000)
@@ -232,11 +232,64 @@ var eliminarElementos = function () {
                 });
             }
         });
-    }
-    // Descarga de elementos
+}
+
+// Renombrar elementos
+var oldName = '';
+var modalRename = function () {
+    oldName = $(this).closest('tr').find('.list-name').text();
+    // Mostramos el cuadro de diálogo de renombre
+    $('#modal-rename').modal('show');
+}
+
+var renameFile = function () {
+    var newName = $('#txtRename').val();
+    var carpeta = $('#rutaActualEnd').attr('data-ruta');
+    var user = $('#userNick').text();
+    console.log("carpeta: "+carpeta+" usuario: "+user);
+    $.get("modulos/renameFile.php", {
+        usuario: user,
+        carpeta: carpeta,
+        elemento: oldName,
+        nombre: newName
+    }, function (data) {
+        if (data == "1") {
+            $('#modal-rename').modal('toggle');
+            // Mensaje
+            $.bootstrapGrowl("<b>"+oldName+"</b> ha sido renombrado por <b>"+newName+"</b>", {
+                type: 'success',
+                align: 'center',
+                width: 'auto',
+                allow_dismiss: false
+            });
+            // Cargado de archivos
+            $('#listado-archivos').fadeOut('fast', function () {
+                    $('#listado-archivos').load('bloques/listadoArchivos.php?uri=' + $('#rutaActual').attr('data-ruta'), function () {
+                        $('#listado-archivos').fadeIn('fast');
+                        $(function () {
+                            $.material.init();
+                            cargarFunciones();
+                        });
+                    });
+                });
+        } else if (data == '2') {
+            // Mensaje
+            $.bootstrapGrowl("Ya existe otro elemento con ese nombre", {
+                type: 'warning',
+                align: 'center',
+                width: 'auto',
+                allow_dismiss: false
+            });
+        };
+    });
+
+}
+
+
+// Descarga de elementos
 var downloadURL = function downloadURL(url) {
     var hiddenIFrameID = 'hiddenDownloader',
-        iframe = document.getElementById(hiddenIFrameID);
+    iframe = document.getElementById(hiddenIFrameID);
     if (iframe === null) {
         iframe = document.createElement('iframe');
         iframe.id = hiddenIFrameID;
@@ -259,7 +312,7 @@ var descargarBackups = function () {
     downloadURL('modulos/descargarElementos.php?usuario=' + user + '&carpeta=/.backups/&elementos=' + elementos);
 }
 
-// Descargar informes no funciona
+// Descargar informes
 var descargarInformes = function () {
     var user = $('#userNick').text();
     var elementos = JSON.stringify(informes);
@@ -300,9 +353,9 @@ var crearBackup = function () {
                         cargarFunciones();
                     });
                 });
-            });*/
-        }
-    });
+});*/
+}
+});
 }
 
 // Crear Informe
@@ -339,9 +392,9 @@ var crearInforme = function () {
                         cargarFunciones();
                     });
                 });
-            })*/
-        }
-    });
+})*/
+}
+});
 }
 
 // Modal eliminar backups
@@ -413,7 +466,7 @@ var eliminarInformes = function () {
 }
 
 // Subida de elementos
-var subida = function subida() {
+var subida = function () {
     // Dropzone 1 -  en el visor de archivos
     Dropzone.options.formularioSubida = {
         paramName: "fileToUpload", // The name that will be used to transfer the file
@@ -493,4 +546,6 @@ $('body').on('click', '#boton-eliminarBackups', eliminarBackups);
 $('body').on('click', '#boton-eliminar-informes', modalInforme);
 $('body').on('click', '#boton-eliminarInformes', eliminarInformes);
 $('body').on('click', '#boton-descargar-informes', descargarInformes);
+$('body').on('click', 'i.edit', modalRename);
+$('body').on('click', '#boton-renameFile', renameFile);
 cargarFunciones();

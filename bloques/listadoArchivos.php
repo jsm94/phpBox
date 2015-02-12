@@ -80,7 +80,7 @@ for($i = 1; $i < $count ; $i++) {
                                 </div>
                             </td>
                             <td class="list-icon edit">
-                                <i class="mdi-content-create"></i>
+                                <i class="mdi-content-create edit"></i>
                             </td>
                         </tr><?php
                 }
@@ -107,6 +107,7 @@ for($i = 1; $i < $count ; $i++) {
                             break;
                         case 'zip':
                         case 'gz':
+                        case 'rar':
                             $color = 'brown';
                             $type = 'mdi-action-note-add';
                             break;
@@ -127,7 +128,7 @@ for($i = 1; $i < $count ; $i++) {
                     </div>
                 </td>
                 <td class="list-icon edit">
-                    <i class="mdi-content-create"></i>
+                    <i class="mdi-content-create edit"></i>
                 </td>
                 </tr><?php
 }
