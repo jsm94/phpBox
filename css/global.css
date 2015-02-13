@@ -1,3 +1,15 @@
+/* STARTER*/
+.btn-primary.dark {
+    background-color: #007166 !important;
+}
+
+.btn-warning.dark {
+    background-color: #B4360F !important;
+}
+
+
+/* //STARTER */
+
 li a {
     cursor: pointer
 }

@@ -3,6 +3,20 @@ $(function () {
     $.material.init();
 });
 
+// ---- Botones registro e inicioSesion ---
+$("#registro").click(function() {
+    $("#panelInicioSesion").fadeOut('fast', function() {
+        $("#panelRegistro").fadeIn('fast');
+    });
+});
+
+$('#inicioSesion').click(function() {
+    $('#panelRegistro').fadeOut('fast', function() {
+        $('#panelInicioSesion').fadeIn('fast');
+    });
+});
+
+
 // ---- Iniciar Sesión ---
 $("#iniciarSesion").click(function () {
     var datos = $("#formularioInicioSesion").serializeArray();
@@ -43,6 +57,50 @@ $("#iniciarSesion").click(function () {
         }
     });
 });
+
+
+// ---- Registro ----
+$('#registrarUsuario').click(function() {
+    if ($('#passwordRegistro').val() === '' || $('#nickRegistro').val() === '') {
+        $.bootstrapGrowl("No puede dejar campos vacíos", {
+            type: 'warning',
+            align: 'center',
+            width: 'auto',
+            allow_dismiss: false
+        });
+    } else {
+        var datos = $("#formularioRegistro").serializeArray();
+        $.post('modulos/registro.php',datos, function(data) {
+            // Comprobamos el resultado
+            if (data == 2) {
+                $.bootstrapGrowl("Ya existe ese nombre de usuario", {
+                    type: 'info',
+                    align: 'center',
+                    width: 'auto',
+                    allow_dismiss: false
+                });
+            } else if(data == 1){
+                $.bootstrapGrowl("Usuario creado con éxito", {
+                    type: 'success',
+                    align: 'center',
+                    width: 'auto',
+                    allow_dismiss: false
+                });
+                $('#panelRegistro').fadeOut('fast', function() {
+                    $('#panelInicioSesion').fadeIn('fast');
+                });
+            } else {
+                $.bootstrapGrowl("Conexión fallida", {
+                    type: 'danger',
+                    align: 'center',
+                    width: 'auto',
+                    allow_dismiss: false
+                });
+            }
+        });
+}
+});
+
 
 var cargarFunciones = function () {
     // Cambiar de directorio
@@ -229,9 +287,9 @@ var eliminarElementos = function () {
                             archivos = [];
                         });
                     });
-                });
-            }
-        });
+});
+}
+});
 }
 
 // Renombrar elementos
@@ -264,14 +322,14 @@ var renameFile = function () {
             });
             // Cargado de archivos
             $('#listado-archivos').fadeOut('fast', function () {
-                    $('#listado-archivos').load('bloques/listadoArchivos.php?uri=' + $('#rutaActual').attr('data-ruta'), function () {
-                        $('#listado-archivos').fadeIn('fast');
-                        $(function () {
-                            $.material.init();
-                            cargarFunciones();
-                        });
+                $('#listado-archivos').load('bloques/listadoArchivos.php?uri=' + $('#rutaActual').attr('data-ruta'), function () {
+                    $('#listado-archivos').fadeIn('fast');
+                    $(function () {
+                        $.material.init();
+                        cargarFunciones();
                     });
                 });
+            });
         } else if (data == '2') {
             // Mensaje
             $.bootstrapGrowl("Ya existe otro elemento con ese nombre", {
