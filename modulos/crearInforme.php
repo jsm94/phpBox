@@ -87,7 +87,7 @@ $mpdf->SetHTMLHeader('<div class="cabecera"><h1 style="font-family: Roboto">phpB
 $mpdf->WriteHTML('<div class="canvas">');
 $mpdf->WriteHTML('<h2 style="font-family: Roboto">Informe de:  &nbsp;<span class="gray">' . $raizUsuario . '</span></h2>');
 $mpdf->WriteHTML('<div class="line"><div>');
-$mpdf->WriteHTML('<div style="margin-left:37%;margin-top:40px" class="circle"><p style="font-family: Roboto" class="size">' . $espacio . '</p><div>');
+$mpdf->WriteHTML('<div style="margin-left:37%;margin-top:40px" class="circle"><p style="font-family: Roboto" class="size">' . $espacio . 'B</p><div>');
 $mpdf->WriteHTML('<p style="font-family: Roboto" class="textL">- de almacenamiento ocupado -</p>');
 $mpdf->WriteHTML('<h2 style="font-family: Roboto;padding-top:20px">Archivos alojados</h2>');
 $mpdf->WriteHTML('<div class="line"><div>');

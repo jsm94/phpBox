@@ -1,6 +1,7 @@
 // Inicio de efectos Material Design
 $(function () {
     $.material.init();
+    Dropzone.autoDiscover = false;
 });
 
 // ---- Botones registro e inicioSesion ---
@@ -101,6 +102,13 @@ $('#registrarUsuario').click(function() {
 }
 });
 
+// Conversor bytes
+function bytesToSize(bytes) {
+ var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
+ if (bytes == 0) return '0 Byte';
+ var i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)));
+ return Math.round(bytes / Math.pow(1024, i), 2) + ' ' + sizes[i];
+};
 
 var cargarFunciones = function () {
     // Cambiar de directorio
@@ -130,11 +138,28 @@ var cargarFunciones = function () {
     $('.file-check').click(checkboxes);
     $('.backup-check').click(checkBackups);
     $('.informe-check').click(checkInformes);*/
+
+    // Subida de archivos
+    Dropzone.autoDiscover = false;
+    $("#boton-subida").dropzone({ url: 'modulos/subirElementos.php?ruta=' + $('#rutaActualEnd').attr('data-ruta') + '&user=' + $('#userNick').text() });
     subida();
 }
 
 // Cargar listado-archivos
 var cargarListado = function () {
+    var ruta = $(this).parent('.dir').attr("data-ruta");
+    $('#listado-archivos').fadeOut('fast', function () {
+        $('#listado-archivos').load('bloques/listadoArchivos.php?ruta=' + ruta, function () {
+            $('#listado-archivos').fadeIn('fast');
+            $(function () {
+                $.material.init();
+                cargarFunciones();
+            });
+        });
+    });
+}
+
+var cargarListadoBread = function () {
     var ruta = $(this).attr("data-ruta");
     $('#listado-archivos').fadeOut('fast', function () {
         $('#listado-archivos').load('bloques/listadoArchivos.php?ruta=' + ruta, function () {
@@ -145,6 +170,48 @@ var cargarListado = function () {
             });
         });
     });
+}
+
+// Informacion archivos
+var infoFile = function () {
+    var carpeta = $('#rutaActualEnd').attr('data-ruta');
+    var user = $('#userNick').text();
+    var elemento = $(this).children('span').text();
+    var simbol = $(this).parent().find('i').attr('class');
+    console.log(simbol);
+    // Realizamos la peticion
+    $.get("modulos/infoFile.php", {
+        usuario: user,
+        carpeta: carpeta,
+        elemento: elemento
+    }, function (data) {
+        var datos = JSON.parse(JSON.stringify(data));
+        var size = datos.size;
+        var mtime = datos.mtime;
+        //console.log(size + ' ' + mtime); //Formateamos
+        $('.init-info-file').addClass('hidden');
+        $('.body-info-file').removeClass('hidden');
+        $('#info-simbol').attr("class", simbol);
+        $('#info-name').text(elemento);
+        $('#info-fileSize').text(bytesToSize(size));
+        // Fecha de modificación
+        date = new Date(mtime * 1000);
+        var month = date.getMonth()+1;
+        var day = date.getDate();
+        var hour = date.getHours();
+        var min = date.getMinutes();
+        var sec = date.getSeconds();
+        mdate = [
+        date.getFullYear(),
+        (month < 10) ? '0' + month : month,
+        (day < 10) ? '0' + day : day,
+        (hour < 10) ? '0' + hour : hour,
+        (min < 10) ? '0' + min : min,
+        (sec < 10) ? '0' + sec : sec,
+        ];
+        $('#info-fileMtime').text(mdate[2] + '/' + mdate[1] + '/' + mdate[0] + ' ' + mdate[3] + ':' + mdate[4] + ':' + mdate[5]);
+    });
+    
 }
 
 // Crear carpeta
@@ -584,6 +651,8 @@ var subida = function () {
             });
         }
     };
+
+    console.log('yep');
 }
 
 // Con la función 'on' se cargarán eventos incluso en los elementos nuevos cargados en el DOM
@@ -592,8 +661,8 @@ $('body').on('click', '.file-check', checkboxes);
 $('body').on('click', '.backup-check', checkBackups);
 $('body').on('click', '.informe-check', checkInformes);
 $('body').on('click', '#boton-nuevo-informe', crearInforme);
-$('body').on('click', '.breadcrumb li>a', cargarListado);
-$('body').on('click', '.dir', cargarListado);
+$('body').on('click', '.breadcrumb li>a', cargarListadoBread);
+$('body').on('click', '.dir>span', cargarListado);
 $('body').on('click', '#boton-crearCarpeta', crearCarpeta);
 $('body').on('click', '#boton-eliminarElementos', eliminarElementos);
 $('body').on('click', '#boton-descargar', descargarElementos);
@@ -606,4 +675,5 @@ $('body').on('click', '#boton-eliminarInformes', eliminarInformes);
 $('body').on('click', '#boton-descargar-informes', descargarInformes);
 $('body').on('click', 'i.edit', modalRename);
 $('body').on('click', '#boton-renameFile', renameFile);
+$('body').on('click', '#listado-archivos .list-name', infoFile);
 cargarFunciones();

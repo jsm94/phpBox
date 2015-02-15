@@ -92,9 +92,13 @@ li.disabled {
 }
 /* Tablas */
 .wrapper-tabla {
-    height: 40vh;
+    height: 340px;
     overflow-x: hidden;
     overflow-y: scroll;
+}
+
+.listados .wrapper-tabla {
+    height: 369px
 }
 
 .table td.list-name {
@@ -144,13 +148,13 @@ table#tabla-archivos>tbody tr:first-child td {
     color: #886c4d
 }
 
-.dir:hover {
+.dir>span:hover {
     text-decoration: underline;
     color: black;
     cursor: pointer
 }
 
-.dir:active {
+.dir>span:active {
     text-decoration: underline;
     color: #3F51B5;
     cursor: pointer
@@ -276,4 +280,147 @@ i.mdi-content-create:hover{
 i.mdi-content-create:active{
     color: #333;
     cursor: pointer;
+}
+
+/* Panel Informativo */
+div.gray {
+    background-color: rgba(162, 162, 162, 0.5);
+    height: 400px;
+    margin: 0px 0px 0px -15px;
+}
+
+.titulo-info-file {
+    border-bottom: 1px solid rgba(115, 115, 115, 0.2)
+}
+
+.titulo-info-file h2 {
+    color: rgba(115, 115, 115, 0.7);
+    font-size: 22px;
+    display: table;
+    height: 30px;
+}
+
+#info-name {
+    display: table-cell;
+    vertical-align: middle
+}
+
+.init-info-file {
+    display: table;
+    height: 345px;
+}
+
+.init-info-file .v1-align {
+    display: table-cell;
+    position: relative;
+    height: 200px;
+    text-align: center;
+    font-size: 200px;
+    color: rgba(115, 115, 115, 0.2)
+}
+
+.init-info-file .v2-align {
+    display: table-cell;
+    position: relative;
+    height: 145px;
+    padding-top: 50px;
+    text-align: center;
+    vertical-align: middle;
+    color: rgba(115, 115, 115, 0.2)
+}
+
+.init-info-file .row {
+    text-align: center
+}
+
+
+.body-info-file {
+    padding: 30px;
+    font-size: 16px;
+    vertical-align: middle;
+    color: rgba(115, 115, 115, 0.7);
+}
+
+.body-info-file p {
+    display: table;
+    height: 29px;
+}
+
+.body-info-file p>span {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.body-info-file p.info-file {
+    padding-bottom: 10px;
+    text-align: center;
+    width: 100%;
+    font-weight: bold
+}
+
+.body-info-file i {
+    padding: 5px;
+    font-size: 25px
+}
+
+#info-simbol {
+    font-size: 30px;
+    padding-right: 5px;
+}
+/* //Panel Informativo */
+.contenido {
+    height: 400px;
+    overflow: hidden;
+    margin-top: -20px;
+}
+
+#listado-archivos {
+    margin-top: 20px;
+}
+
+/* Footer */
+
+.footer {
+    background: rgb(218, 218, 218);
+    height: 60px;
+    color: #737373;
+}
+
+.footer .fa {
+    font-size: 25px;
+    padding-right: 10px;
+    color: #737373;
+}
+
+.footer i.fa:hover {
+    color: #009587
+}
+
+.footer .footer-row {
+    display: table;
+    height: 60px;
+}
+
+.footer .footer-content {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+
+/* //Footer */
+
+.starter-template {
+    padding-top: 130px;
+}
+
+.starter-template h1 {
+    padding-bottom: 50px
+}
+
+.starter-template .panel .panel-footer {
+    padding-top: 20px;
+}
+
+.starter-template .panel span.input-group-btn {
+    text-align: center;
 }
