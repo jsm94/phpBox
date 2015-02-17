@@ -8,7 +8,7 @@ $BOX_RAIZ = '/var/www/d_Box/';
 $BOX_prefixUser = 'd_';
 
 // Variables para la base de datos
-$BOX_BD_name = 'boxBD'; //boxBD
+$BOX_BD_name = 'phpBox'; //boxBD
 $BOX_BD_server = 'localhost';
 $BOX_BD_user = 'root';
 $BOX_BD_pass = 'usuario';

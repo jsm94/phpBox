@@ -124,6 +124,12 @@ table#tabla-archivos>tbody tr:first-child td {
     vertical-align: bottom;
 }
 
+.list-icon.mail {
+    text-align: left;
+    font-size: 25px;
+    vertical-align: bottom;
+}
+
 .list-icon.blue, .blue {
     color: #2c6fb2
 }
@@ -282,6 +288,15 @@ i.mdi-content-create:active{
     cursor: pointer;
 }
 
+i.mdi-communication-email:hover{
+    color: #737373;
+    cursor: pointer;
+}
+i.mdi-communication-email:active{
+    color: #333;
+    cursor: pointer;
+}
+
 /* Panel Informativo */
 div.gray {
     background-color: rgba(162, 162, 162, 0.5);
@@ -302,7 +317,8 @@ div.gray {
 
 #info-name {
     display: table-cell;
-    vertical-align: middle
+    vertical-align: middle;
+    word-break: break-word;
 }
 
 .init-info-file {
@@ -384,6 +400,7 @@ div.gray {
     background: rgb(218, 218, 218);
     height: 60px;
     color: #737373;
+    margin: 0px -15px 0px -15px;
 }
 
 .footer .fa {

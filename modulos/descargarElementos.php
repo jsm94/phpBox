@@ -47,6 +47,7 @@ if($raizUsuario == $_SESSION['nick']){
 
     echo "Archive created successfully.";
     if(file_exists($bk)) {
+        ignore_user_abort(true);
         header('Content-Description: Transferencia de archivos');
         header('Content-Type: mime/type');
         header('Content-Disposition: attachment; filename='.basename($bk));
@@ -58,6 +59,7 @@ if($raizUsuario == $_SESSION['nick']){
         ob_clean();
         flush();
         readfile($bk);
+        unlink($bk);
         exit;
     }
     echo "ok";
