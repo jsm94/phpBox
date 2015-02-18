@@ -8,15 +8,15 @@ include_once 'subnav.php';
 <div class="container-fluid">
     <div class="row contenido">
         <div class="col-md-4 col-lg-3 col-sm-4 hidden-xs">
-            <div class="col-md-12 gray">
-                <div class="col-md-12 titulo-info-file">
+            <div class="col-md-12 col-sm-12 gray">
+                <div class="col-md-12 col-sm-12 titulo-info-file">
                     <h2><i id="info-simbol"></i><span id="info-name">Información de archivos</span></h2>
                 </div>
-                <div class="col-md-12 init-info-file">
-                    <div class="col-md-12 v1-align"><i class="mdi-action-info"></i></div>
-                    <div class="col-md-12 v2-align"><p>Pulsa en un archivo para consultar su estado</p></div>
+                <div class="col-md-12 col-sm-12 init-info-file">
+                    <div class="col-md-12 col-sm-12 v1-align"><i class="mdi-action-info"></i></div>
+                    <div class="col-md-12 col-sm-12 v2-align"><p>Pulsa en un archivo para consultar su estado</p></div>
                 </div>
-                <div class="col-md-12 body-info-file hidden">
+                <div class="col-md-12 col-sm-12 body-info-file hidden">
                     <p><i class="mdi-content-save"></i><span>Espacio ocupado en disco:</span></p>
                     <p id="info-fileSize" class="info-file"></p>
                     <p><i class="mdi-notification-event-note"></i><span>Fecha de modificación:</span></p>
