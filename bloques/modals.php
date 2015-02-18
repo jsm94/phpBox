@@ -115,3 +115,34 @@
         </div>
     </div>
 </div>
+
+
+<!-- Enviar informes -->
+<div class="modal fade" id="modal-envio" tabindex="-1" role="dialog" aria-labelledby="myModalLabe6" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel6">Enviar informe</h4>
+            </div>
+
+            <div class="modal-body">
+                <p>Se va a enviar <b><span id="modal-envio-nombreInforme"></span></b>.</p>
+                <div>
+                    <form id="subida-imagen" action="modulos/subirElementos.php" class="dropzone">
+                        <div class="dz-message" data-dz-message>
+                            <span class="btn btn-primary">Sube una imagen</span>
+                            <small>La imagen se añadirá al informe.</small>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                <a href="#" class="btn btn-success enviarInforme" id="boton-enviarInforme">Enviar</a>
+            </div>
+        </div>
+    </div>
+</div>

@@ -57,7 +57,7 @@ foreach ($files as $file) {
                     </label>
                 </div>
             </td>
-            <td class="list-icon mail"><i class="mdi-communication-email"></i></td>
+            <td class="list-icon mail"><i class="mdi-communication-email mail"></i></td>
             </tr><?php
 }
             ?>

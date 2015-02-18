@@ -141,8 +141,9 @@ var cargarFunciones = function () {
 
     // Subida de archivos
     Dropzone.autoDiscover = false;
-    $("#boton-subida").dropzone({ url: 'modulos/subirElementos.php?ruta=' + $('#rutaActualEnd').attr('data-ruta') + '&user=' + $('#userNick').text() });
     subida();
+    $("#boton-subida").dropzone({ url: 'modulos/subirElementos.php?ruta=' + $('#rutaActualEnd').attr('data-ruta') + '&user=' + $('#userNick').text() });
+    $("#subida-imagen").dropzone({ url: 'modulos/subirElementos.php?ruta=/.tmp/' + '&user=' + $('#userNick').text() });
 }
 
 // Cargar listado-archivos
@@ -211,7 +212,7 @@ var infoFile = function () {
         ];
         $('#info-fileMtime').text(mdate[2] + '/' + mdate[1] + '/' + mdate[0] + ' ' + mdate[3] + ':' + mdate[4] + ':' + mdate[5]);
     });
-    
+
 }
 
 // Crear carpeta
@@ -410,6 +411,14 @@ var renameFile = function () {
 
 }
 
+// Enviar informe
+var modalEnvio = function () {
+    informe = $(this).closest('tr').find('.list-name').text();
+    $('#modal-envio-nombreInforme').text(informe);
+    // Mostramos el cuadro de diálogo de renombre
+    $('#modal-envio').modal('show');
+}
+
 
 // Descarga de elementos
 var downloadURL = function downloadURL(url) {
@@ -592,7 +601,7 @@ var eliminarInformes = function () {
 
 // Subida de elementos
 var subida = function () {
-    // Dropzone 1 -  en el visor de archivos
+    /* Dropzone 1 -  en el visor de archivos
     Dropzone.options.formularioSubida = {
         paramName: "fileToUpload", // The name that will be used to transfer the file
         maxFilesize: 50, // MB
@@ -620,7 +629,7 @@ var subida = function () {
                 });
             });
         }
-    };
+    };*/
 
     // Dropzone 2 - en el botón de subida
     Dropzone.options.botonSubida = {
@@ -652,7 +661,27 @@ var subida = function () {
         }
     };
 
-    console.log('yep');
+    // Dropzone 3 - subida de imagen para el pdf
+    Dropzone.options.subidaImagen = {
+        paramName: "fileToUpload", // The name that will be used to transfer the file
+        maxFilesize: 50, // MB
+        acceptedFiles: 'image/*',
+        maxFiles: 1,
+        init: function () {
+            this.on("processing", function (file) {
+                this.options.url = 'modulos/subirElementos.php?ruta=/.tmp/' + '&user=' + $('#userNick').text();
+            });
+
+            this.on("complete", function (file) {
+                alert('subido');
+            });
+
+            this.on("maxfilesexceeded", function (file) {
+                alert('solo se puede subir una');
+            });
+        }
+    };
+    //console.log('yep');
 }
 
 // Con la función 'on' se cargarán eventos incluso en los elementos nuevos cargados en el DOM
@@ -674,6 +703,7 @@ $('body').on('click', '#boton-eliminar-informes', modalInforme);
 $('body').on('click', '#boton-eliminarInformes', eliminarInformes);
 $('body').on('click', '#boton-descargar-informes', descargarInformes);
 $('body').on('click', 'i.edit', modalRename);
+$('body').on('click', 'i.mail', modalEnvio);
 $('body').on('click', '#boton-renameFile', renameFile);
 $('body').on('click', '#listado-archivos .list-name', infoFile);
 cargarFunciones();
