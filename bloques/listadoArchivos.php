@@ -115,6 +115,13 @@ for($i = 1; $i < $count ; $i++) {
                         $color = 'yelbrown';
                         $type = 'mdi-action-extension';
                         break;
+                        case 'mov':
+                        case 'mp4':
+                        case 'avi':
+                        case 'mkv':
+                        $color = 'purple';
+                        $type = 'mdi-av-movie';
+                        break;
                     }
                 ?><tr>
                 <td class="list-icon <?php echo $color ?>"><i class="<?php echo $type ?>"></i></td>
