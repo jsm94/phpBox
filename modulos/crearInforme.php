@@ -26,7 +26,7 @@ $iterator = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($carpet
 // iterate over the directory
 // add each file found to the archive
 foreach ($iterator as $key=>$value) {
-    if(substr($key,-1) !== '.'){
+    if(substr($key,-1) !== '.' && strpos($key,'.backups') == false && strpos($key,'.tmp') == false && strpos($key,'.informes') == false){
         $espacio += filesize($key);
         array_push($archivos, str_replace($BOX_RAIZ . $BOX_prefixUser . $raizUsuario . '/',"",$key));
     }
