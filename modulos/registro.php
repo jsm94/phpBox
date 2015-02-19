@@ -2,7 +2,7 @@
 //ini_set('display_errors', 'On');
 session_start();
 include_once '../global.php';
-if($_POST["nick"] == "" && $_POST["password"] == ""){
+if($_POST["nick"] == "" && $_POST["password"] == "" && $_POST["email"] == ""){
     die("Error");
 }
 try {
@@ -20,7 +20,7 @@ try {
         return 2;
     } else {
         // Insertamos el usuario en la base de datos
-        $stmt2 = $conn->prepare("INSERT INTO usuarios (nick,password) VALUES ('" . $_POST['nick'] . "','" . $_POST['password'] . "')");
+        $stmt2 = $conn->prepare("INSERT INTO usuarios (nick,password,email) VALUES ('" . $_POST['nick'] . "','" . $_POST['password'] . "','" . $_POST['email'] . "')");
         $stmt2->execute();
         // Creamos los directorios para el usuario
         $dirUsuario = $BOX_RAIZ . $BOX_prefixUser . $_POST['nick'];

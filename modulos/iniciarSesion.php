@@ -16,6 +16,7 @@ try {
     // Si existe...
     if ($row->nick == $_POST['nick'] && $row->password == $_POST['password']) {
         $_SESSION['nick'] = $row->nick; // Lo guardamos en la sesión
+        $_SESSION['email'] = $row->email; // Guardamos en la sesión el email
         echo "1"; // Usuario validado
         return 1;
     } else {

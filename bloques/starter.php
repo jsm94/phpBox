@@ -40,10 +40,13 @@
                     <form id="formularioRegistro" method="post">
                         <div class="panel-body">
                             <div class="form-group">
-                                <input id="passwordRegistro" class="form-control floating-label" name="nick" type="text" placeholder="Usuario">
+                                <input id="nickRegistro" class="form-control floating-label" name="nick" type="text" placeholder="Usuario">
                             </div>
                             <div class="form-group">
                                 <input id="passwordRegistro" class="form-control floating-label" name="password" type="password" placeholder="Contraseña">
+                            </div>
+                            <div class="form-group">
+                                <input id="emailRegistro" class="form-control floating-label" name="email" type="email" placeholder="Email">
                             </div>
                         </div>
                         <div class="panel-footer">

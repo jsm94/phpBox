@@ -2,6 +2,10 @@
 $(function () {
     $.material.init();
     Dropzone.autoDiscover = false;
+    if($('#boton-subida').val() !== undefined){
+        $("#boton-subida").dropzone({ url: 'modulos/subirElementos.php?ruta=' + $('#rutaActualEnd').attr('data-ruta') + '&user=' + $('#userNick').text() });
+        $("#subida-imagen").dropzone({ url: 'modulos/subirElementos.php?ruta=/.tmp/' + '&user=' + $('#userNick').text() });
+    }
 });
 
 // ---- Botones registro e inicioSesion ---
@@ -17,6 +21,10 @@ $('#inicioSesion').click(function() {
     });
 });
 
+var dropzones = function () {
+    $("#boton-subida").dropzone({ url: 'modulos/subirElementos.php?ruta=' + $('#rutaActualEnd').attr('data-ruta') + '&user=' + $('#userNick').text() });
+    $("#subida-imagen").dropzone({ url: 'modulos/subirElementos.php?ruta=/.tmp/' + '&user=' + $('#userNick').text() });
+}
 
 // ---- Iniciar Sesión ---
 $("#iniciarSesion").click(function () {
@@ -37,6 +45,7 @@ $("#iniciarSesion").click(function () {
                         $(function () {
                             $.material.init();
                             $(document).ready(cargarFunciones);
+                            $(document).ready(dropzones);
                         });
                     });
                 });
@@ -62,7 +71,7 @@ $("#iniciarSesion").click(function () {
 
 // ---- Registro ----
 $('#registrarUsuario').click(function() {
-    if ($('#passwordRegistro').val() === '' || $('#nickRegistro').val() === '') {
+    if ($('#passwordRegistro').val() === '' || $('#nickRegistro').val() === '' || $('#emailRegistro').val() === '') {
         $.bootstrapGrowl("No puede dejar campos vacíos", {
             type: 'warning',
             align: 'center',
@@ -104,10 +113,10 @@ $('#registrarUsuario').click(function() {
 
 // Conversor bytes
 function bytesToSize(bytes) {
- var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
- if (bytes == 0) return '0 Byte';
- var i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)));
- return Math.round(bytes / Math.pow(1024, i), 2) + ' ' + sizes[i];
+   var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
+   if (bytes == 0) return '0 Byte';
+   var i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)));
+   return Math.round(bytes / Math.pow(1024, i), 2) + ' ' + sizes[i];
 };
 
 var cargarFunciones = function () {
@@ -140,10 +149,8 @@ var cargarFunciones = function () {
     $('.informe-check').click(checkInformes);*/
 
     // Subida de archivos
-    Dropzone.autoDiscover = false;
     subida();
-    $("#boton-subida").dropzone({ url: 'modulos/subirElementos.php?ruta=' + $('#rutaActualEnd').attr('data-ruta') + '&user=' + $('#userNick').text() });
-    $("#subida-imagen").dropzone({ url: 'modulos/subirElementos.php?ruta=/.tmp/' + '&user=' + $('#userNick').text() });
+    $.material.init();
 }
 
 // Cargar listado-archivos
@@ -153,7 +160,6 @@ var cargarListado = function () {
         $('#listado-archivos').load('bloques/listadoArchivos.php?ruta=' + ruta, function () {
             $('#listado-archivos').fadeIn('fast');
             $(function () {
-                $.material.init();
                 cargarFunciones();
             });
         });
@@ -166,7 +172,6 @@ var cargarListadoBread = function () {
         $('#listado-archivos').load('bloques/listadoArchivos.php?ruta=' + ruta, function () {
             $('#listado-archivos').fadeIn('fast');
             $(function () {
-                $.material.init();
                 cargarFunciones();
             });
         });
@@ -340,7 +345,6 @@ var eliminarElementos = function () {
                     $('#listado-archivos').load('bloques/listadoArchivos.php?uri=' + $('#rutaActual').attr('data-ruta'), function () {
                         $('#listado-archivos').fadeIn('fast');
                         $(function () {
-                            $.material.init();
                             cargarFunciones();
                             $('#boton-eliminar').removeClass('appear');
                             $('#boton-eliminar').addClass('desappear');
@@ -412,9 +416,10 @@ var renameFile = function () {
 }
 
 // Enviar informe
+var nameInforme;
 var modalEnvio = function () {
-    informe = $(this).closest('tr').find('.list-name').text();
-    $('#modal-envio-nombreInforme').text(informe);
+    nameInforme = $(this).closest('tr').find('.list-name').text();
+    $('#modal-envio-nombreInforme').text(nameInforme);
     // Mostramos el cuadro de diálogo de renombre
     $('#modal-envio').modal('show');
 }
@@ -529,6 +534,40 @@ var crearInforme = function () {
 })*/
 }
 });
+}
+var imagenInforme = '';
+var enviarInforme = function () {
+    var user = $('#userNick').text();
+    $('#boton-enviarInforme').text('Enviando...');
+    $('#loaderSubidaImagen').show();
+    $.get('modulos/enviarInforme.php', {
+        usuario: user,
+        informe: nameInforme,
+        imagen: imagenInforme
+    }, function (data) {
+        if(data == 1){
+            $('#modal-envio').modal('hide');
+            $.bootstrapGrowl("Informe enviado", {
+                type: 'success',
+                align: 'center',
+                width: 'auto',
+                allow_dismiss: false
+            });
+            $('#boton-enviarInforme').text('Enviar');
+            $('#loaderSubidaImagen').toggle();
+            $('#nombreImagenSubida').text('La imagen se añadirá al informe.');
+            $('#modal-envio').modal('hide');
+            imagenInforme = '';
+        } else {
+            $.bootstrapGrowl("Error al enviar el informe", {
+                type: 'danger',
+                align: 'center',
+                width: 'auto',
+                allow_dismiss: false
+            });
+            imagenInforme = '';
+        }
+    });
 }
 
 // Modal eliminar backups
@@ -666,18 +705,15 @@ var subida = function () {
         paramName: "fileToUpload", // The name that will be used to transfer the file
         maxFilesize: 50, // MB
         acceptedFiles: 'image/*',
-        maxFiles: 1,
+        parallelUploads: 1,
         init: function () {
             this.on("processing", function (file) {
                 this.options.url = 'modulos/subirElementos.php?ruta=/.tmp/' + '&user=' + $('#userNick').text();
             });
 
             this.on("complete", function (file) {
-                alert('subido');
-            });
-
-            this.on("maxfilesexceeded", function (file) {
-                alert('solo se puede subir una');
+                imagenInforme = file.name;
+                $('#nombreImagenSubida').text(imagenInforme);
             });
         }
     };
@@ -702,6 +738,7 @@ $('body').on('click', '#boton-eliminarBackups', eliminarBackups);
 $('body').on('click', '#boton-eliminar-informes', modalInforme);
 $('body').on('click', '#boton-eliminarInformes', eliminarInformes);
 $('body').on('click', '#boton-descargar-informes', descargarInformes);
+$('body').on('click', '#boton-enviarInforme', enviarInforme);
 $('body').on('click', 'i.edit', modalRename);
 $('body').on('click', 'i.mail', modalEnvio);
 $('body').on('click', '#boton-renameFile', renameFile);
