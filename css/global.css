@@ -95,6 +95,7 @@ li.disabled {
     height: 340px;
     overflow-x: hidden;
     overflow-y: scroll;
+    width: 100%;
 }
 
 .listados .wrapper-tabla {
@@ -106,7 +107,7 @@ li.disabled {
 }
 
 td.list-name.dir {
-    width: 60%;
+    /*width: 60%;*/
 }
 
 table#tabla-archivos>tbody tr:first-child td {

@@ -71,8 +71,7 @@ for($i = 1; $i < $count ; $i++) {
                         ?><tr>
                             <td class="list-icon yellow"><i class="mdi-file-folder"></i></td>
                             <td class="list-name dir" data-ruta="<?php echo base64_encode($dir . "/" . $file) ?>"><span><?php echo $file ?></span></td>
-                            <td></td>
-                            <td>
+                            <td class="list-check">
                                 <div class="checkbox">
                                     <label>
                                         <input data-file="<?php echo $file ?>" type="checkbox" class="file-check">
@@ -126,8 +125,7 @@ for($i = 1; $i < $count ; $i++) {
                 ?><tr>
                 <td class="list-icon <?php echo $color ?>"><i class="<?php echo $type ?>"></i></td>
                 <td class="list-name"><span><?php echo $file ?></span></td>
-                <td></td>
-                <td>
+                <td class="list-check">
                     <div class="checkbox">
                         <label>
                             <input data-file="<?php echo $file ?>" type="checkbox" class="file-check">
